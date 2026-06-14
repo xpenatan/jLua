@@ -51,12 +51,12 @@ interface LuaState {
     // Upvalue starts at index 2
     void x_lua_pushcclosure(LuaFunction callback, long n);
     void x_lua_pushcfunction(LuaFunction callback);
-    [Const, Value] IDLString x_lua_pushfstring([Const] DOMString fmt);
+    [Const, Value] NativeString x_lua_pushfstring([Const] DOMString fmt);
     void x_lua_pushglobaltable();
     void x_lua_pushinteger(long n);
     void x_lua_pushlightuserdata(any n);
-//    IDLString x_lua_pushliteral([Const] DOMString s);
-    [Const, Value] IDLString x_lua_pushlstring([Const] DOMString s, long len);
+//    NativeString x_lua_pushliteral([Const] DOMString s);
+    [Const, Value] NativeString x_lua_pushlstring([Const] DOMString s, long len);
     void x_lua_pushnil();
     void x_lua_pushnumber(double n);
     void x_lua_pushstring([Const] DOMString s);
@@ -91,15 +91,15 @@ interface LuaState {
     void x_lua_toclose(long index);
     long x_lua_tointeger(long index);
 //    lua_Integer lua_tointegerx (lua_State *L, int index, int *isnum);
-//    [Const, Value] IDLString x_lua_tolstring(long index, size_t* len);
+//    [Const, Value] NativeString x_lua_tolstring(long index, size_t* len);
     double x_lua_tonumber(long index);
 //    lua_Number lua_tonumberx (lua_State *L, int index, int *isnum);
     [Const] any x_lua_topointer (long index);
-    [Const, Value] IDLString x_lua_tostring(long index);
+    [Const, Value] NativeString x_lua_tostring(long index);
 //    lua_State *lua_tothread (lua_State *L, int index);
     any x_lua_touserdata(long index);
     long x_lua_type(long index);
-    [Const, Value] IDLString x_lua_typename(long tp);
+    [Const, Value] NativeString x_lua_typename(long tp);
     long x_lua_upvalueindex(long i);
     double x_lua_version();
     void x_lua_warning([Const] DOMString msg, long tocont);
@@ -116,7 +116,7 @@ interface LuaState {
     void x_luaL_checkversion();
 
     long x_luaL_newmetatable([Const] DOMString tname);
-    long x_luaL_getmetafield(long obj, [Const] DOMString e);
+    long x_luaL_getmetafield(long obj, [Const] DOMString fieldName);
     long x_luaL_getmetatable([Const] DOMString tname);
     long x_luaL_getsubtable(long idx, [Const] DOMString fname);
 
@@ -133,8 +133,8 @@ interface LuaState {
     void createContext();
     void destroyContext();
 
-    [Const, Value] IDLString dumpStack();
-    [Const, Value] IDLString dumpTable();
+    [Const, Value] NativeString dumpStack();
+    [Const, Value] NativeString dumpTable();
 
     static void setIntToVoid(any pointer, long value);
     static long getIntFromVoid(any pointer);

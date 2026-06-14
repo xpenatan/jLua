@@ -27,27 +27,43 @@ public class Build {
         data.packageName = basePackage;
         data.cppSourcePath = sourcePath;
         data.modulePrefix = modulePrefix;
+        data.moduleJNISuffix = "-jni";
+        data.moduleFFMSuffix = "-ffm";
+        data.moduleWebSuffix = "-web";
 
         BuildToolOptions op = new BuildToolOptions(data, args);
+        op.addAdditionalIDLRefPath(IDLReader.getRuntimeHelperFile());
         BuilderTool.build(op, new BuildToolListener() {
             @Override
             public void onAddTarget(BuildToolOptions op, IDLReader idlReader, ArrayList<BuildMultiTarget> targets) {
-                if(op.containsArg("teavm")) {
-                    targets.add(getTeaVMTarget(op, idlReader));
+                if(op.containsArg("web")) {
+                    targets.add(getWebTarget(op, idlReader));
                 }
-                if(op.containsArg("windows64")) {
-                    targets.add(getWindowTarget(op));
+                if(op.containsArg("windows64_jni")) {
+                    targets.add(getWindowTarget(op, false));
                 }
-                if(op.containsArg("linux64")) {
-                    targets.add(getLinuxTarget(op));
+                if(op.containsArg("windows64_ffm")) {
+                    targets.add(getWindowTarget(op, true));
                 }
-                if(op.containsArg("mac64")) {
-                    targets.add(getMacTarget(op, false));
+                if(op.containsArg("linux64_jni")) {
+                    targets.add(getLinuxTarget(op, false));
                 }
-                if(op.containsArg("macArm")) {
-                    targets.add(getMacTarget(op, true));
+                if(op.containsArg("linux64_ffm")) {
+                    targets.add(getLinuxTarget(op, true));
                 }
-                if(op.containsArg("android")) {
+                if(op.containsArg("mac64_jni")) {
+                    targets.add(getMacTarget(op, false, false));
+                }
+                if(op.containsArg("mac64_ffm")) {
+                    targets.add(getMacTarget(op, false, true));
+                }
+                if(op.containsArg("macArm_jni")) {
+                    targets.add(getMacTarget(op, true, false));
+                }
+                if(op.containsArg("macArm_ffm")) {
+                    targets.add(getMacTarget(op, true, true));
+                }
+                if(op.containsArg("android_jni")) {
                     targets.add(getAndroidTarget(op));
                 }
 //                if(op.containsArg("iOS")) {
@@ -65,10 +81,11 @@ public class Build {
         });
     }
 
-    private static BuildMultiTarget getWindowTarget(BuildToolOptions op) {
+    private static BuildMultiTarget getWindowTarget(BuildToolOptions op, boolean isFFM) {
         BuildMultiTarget multiTarget = new BuildMultiTarget();
         String libBuildCPPPath = op.getModuleBuildCPPPath();
         String sourceDir = op.getSourceDir();
+        String api = isFFM ? "ffm" : "jni";
 
 //        WindowsMSVCTarget.DEBUG_BUILD = true;
 
@@ -84,21 +101,28 @@ public class Build {
 
         // Compile glue code and link
         WindowsMSVCTarget linkTarget = new WindowsMSVCTarget();
-        linkTarget.addJNIHeaders();
+        linkTarget.libDirSuffix += api;
         linkTarget.cppFlags.add("-std:c++17");
         linkTarget.headerDirs.add("-I" + sourceDir);
         linkTarget.headerDirs.add("-I" + op.getCustomSourceDir());
-        linkTarget.cppInclude.add(libBuildCPPPath + "/src/jniglue/JNIGlue.cpp");
+        if(isFFM) {
+            linkTarget.setupFFMGlueCode(libBuildCPPPath);
+        }
+        else {
+            linkTarget.setupJNIGlueCode(libBuildCPPPath);
+        }
+        linkTarget.linkerFlags.add("/DLL");
         linkTarget.linkerFlags.add(libBuildCPPPath + "/libs/windows/vc/lua64_.lib");
         multiTarget.add(linkTarget);
 
         return multiTarget;
     }
 
-    private static BuildMultiTarget getLinuxTarget(BuildToolOptions op) {
+    private static BuildMultiTarget getLinuxTarget(BuildToolOptions op, boolean isFFM) {
         BuildMultiTarget multiTarget = new BuildMultiTarget();
         String libBuildCPPPath = op.getModuleBuildCPPPath();
         String sourceDir = op.getSourceDir();
+        String api = isFFM ? "ffm" : "jni";
 
         // Make a static library
         LinuxTarget linuxTarget = new LinuxTarget(SourceLanguage.C);
@@ -112,21 +136,27 @@ public class Build {
 
         // Compile glue code and link
         LinuxTarget linkTarget = new LinuxTarget();
-        linkTarget.addJNIHeaders();
+        linkTarget.libDirSuffix += api;
         linkTarget.cppFlags.add("-std=c++17");
         linkTarget.headerDirs.add("-I" + sourceDir);
         linkTarget.headerDirs.add("-I" + op.getCustomSourceDir());
         linkTarget.linkerFlags.add(libBuildCPPPath + "/libs/linux/liblua64_.a");
-        linkTarget.cppInclude.add(libBuildCPPPath + "/src/jniglue/JNIGlue.cpp");
+        if(isFFM) {
+            linkTarget.setupFFMGlueCode(libBuildCPPPath);
+        }
+        else {
+            linkTarget.setupJNIGlueCode(libBuildCPPPath);
+        }
         multiTarget.add(linkTarget);
 
         return multiTarget;
     }
 
-    private static BuildMultiTarget getMacTarget(BuildToolOptions op, boolean isArm) {
+    private static BuildMultiTarget getMacTarget(BuildToolOptions op, boolean isArm, boolean isFFM) {
         BuildMultiTarget multiTarget = new BuildMultiTarget();
         String libBuildCPPPath = op.getModuleBuildCPPPath();
         String sourceDir = op.getSourceDir();
+        String api = isFFM ? "ffm" : "jni";
 
         // Make a static library
         MacTarget macTarget = new MacTarget(SourceLanguage.C, isArm);
@@ -140,7 +170,7 @@ public class Build {
 
         // Compile glue code and link
         MacTarget linkTarget = new MacTarget(isArm);
-        linkTarget.addJNIHeaders();
+        linkTarget.libDirSuffix += api;
         linkTarget.cppFlags.add("-std=c++17");
         linkTarget.headerDirs.add("-I" + sourceDir);
         linkTarget.headerDirs.add("-I" + op.getCustomSourceDir());
@@ -150,13 +180,18 @@ public class Build {
         else {
             linkTarget.linkerFlags.add(libBuildCPPPath + "/libs/mac/liblua64_.a");
         }
-        linkTarget.cppInclude.add(libBuildCPPPath + "/src/jniglue/JNIGlue.cpp");
+        if(isFFM) {
+            linkTarget.setupFFMGlueCode(libBuildCPPPath);
+        }
+        else {
+            linkTarget.setupJNIGlueCode(libBuildCPPPath);
+        }
         multiTarget.add(linkTarget);
 
         return multiTarget;
     }
 
-    private static BuildMultiTarget getTeaVMTarget(BuildToolOptions op, IDLReader idlReader) {
+    private static BuildMultiTarget getWebTarget(BuildToolOptions op, IDLReader idlReader) {
         BuildMultiTarget multiTarget = new BuildMultiTarget();
         String libBuildCPPPath = op.getModuleBuildCPPPath();
         String sourceDir = op.getSourceDir();
@@ -178,6 +213,11 @@ public class Build {
         // Compile glue code and link
         EmscriptenTarget linkTarget = new EmscriptenTarget();
         linkTarget.idlReader = idlReader;
+        linkTarget.cppInclude.add(libBuildCPPPath + "/src/runtime/RuntimeHelper.cpp");
+        linkTarget.exportedRuntimeMethods.removeIf(method ->
+                method.equals("loadDynamicLibrary") ||
+                method.equals("loadWebAssemblyModule") ||
+                method.equals("LDSO"));
         linkTarget.cppFlags.add("-std=c++17");
         linkTarget.headerDirs.add("-I" + sourceDir);
         linkTarget.headerDirs.add("-include" + op.getCustomSourceDir() + "LuaCustom.h");
@@ -215,11 +255,10 @@ public class Build {
 
             // Compile glue code and link
             AndroidTarget linkTarget = new AndroidTarget(target, apiLevel);
-            linkTarget.addJNIHeaders();
             linkTarget.cppFlags.add("-std=c++17");
             linkTarget.headerDirs.add("-I" + sourceDir);
             linkTarget.headerDirs.add("-I" + op.getCustomSourceDir());
-            linkTarget.cppInclude.add(libBuildCPPPath + "/src/jniglue/JNIGlue.cpp");
+            linkTarget.setupJNIGlueCode(libBuildCPPPath);
             linkTarget.linkerFlags.add(libBuildCPPPath + "/libs/android/" + target.getFolder() +"/lib" + op.libName + ".a");
             linkTarget.linkerFlags.add("-Wl,-z,max-page-size=16384");
             multiTarget.add(linkTarget);

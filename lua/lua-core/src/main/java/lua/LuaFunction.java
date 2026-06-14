@@ -3,38 +3,20 @@
  *
  * Do not make changes to this file
  *-------------------------------------------------------*/
+
 package lua;
 
-import com.github.xpenatan.jParser.idl.IDLBase;
+import com.github.xpenatan.jParser.api.NativeObject;
 
-public class LuaFunction extends IDLBase {
+public class LuaFunction extends NativeObject {
 
     static private LuaState LuaState_TEMP_STATIC_GEN_0;
 
     static public final LuaFunction NULL = LuaFunction.native_new();
 
-    /*[-JNI;-NATIVE]
-	static jmethodID LuaFunctionImpl_onCallJ_ID;
-
-class LuaFunctionImpl : public LuaFunction {
-private:
-	JNIEnv* env;
-	jobject obj;
-public:
-void setupCallback(JNIEnv* env, jobject obj) {
-	this->env = env;
-	this->obj = env->NewGlobalRef(obj);
-	static jclass jClassID = 0;
-	if(jClassID == 0) {
-		jClassID = (jclass)env->NewGlobalRef(env->GetObjectClass(obj));
-		LuaFunctionImpl_onCallJ_ID = env->GetMethodID(jClassID, "internal_onCall", "(J)I");
-	}
-}
-virtual int onCall(LuaState* luaState) {
-   return env->CallIntMethod(obj, LuaFunctionImpl_onCallJ_ID, (jlong)luaState);
-}
-};
-*/
+    /**
+     * Dummy constructor, used internally to creates objects without C++ pointer
+     */
     @Deprecated()
     protected LuaFunction(byte b, char c) {
     }
@@ -46,24 +28,13 @@ virtual int onCall(LuaState* luaState) {
         return new LuaFunction((byte) 0, (char) 0);
     }
 
-    protected void deleteNative() {
-        internal_native_deleteNative(native_address);
-    }
-
-    /*[-JNI;-NATIVE]
-LuaFunctionImpl* nativeObject = (LuaFunctionImpl*)this_addr;
-delete nativeObject;
-*/
-    public static native void internal_native_deleteNative(long this_addr);
-
     public LuaFunction() {
-        long addr = internal_native_create();
+        long addr = internal_native_create_addr();
         internal_reset(addr, true);
         setupCallback();
     }
 
     private void setupCallback() {
-        internal_native_setupCallback(native_address);
     }
 
     protected int onCall(LuaState luaState) {
@@ -77,14 +48,5 @@ delete nativeObject;
         return onCall(LuaState_TEMP_STATIC_GEN_0);
     }
 
-    /*[-JNI;-NATIVE]
-return (jlong)new LuaFunctionImpl();
-*/
-    public static native long internal_native_create();
-
-    /*[-JNI;-NATIVE]
-LuaFunctionImpl* nativeObject = (LuaFunctionImpl*)this_addr;
-nativeObject->setupCallback(env, object);
-*/
-    public native void internal_native_setupCallback(long this_addr);
+    public static native long internal_native_create_addr();
 }

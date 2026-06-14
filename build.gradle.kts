@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("signing")
+    id("io.github.libfdx") apply false
     id("org.jetbrains.kotlin.android") version "1.8.21" apply false
 }
 

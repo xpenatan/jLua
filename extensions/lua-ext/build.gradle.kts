@@ -6,7 +6,7 @@ val moduleName = "lua-ext"
 
 
 dependencies {
-    implementation(project(":lua:lua-core"))
+    compileOnlyApi(project(":lua:lua-core"))
 }
 
 java {

@@ -4,8 +4,8 @@ import java.net.URLEncoder
 
 var libProjects = mutableSetOf(
     project(":lua:lua-core"),
-    project(":lua:lua-desktop"),
-    project(":lua:lua-teavm"),
+    project(":lua:lua-jni"),
+    project(":lua:lua-web"),
     project(":lua:lua-android"),
     project(":extensions:lua-ext")
 )

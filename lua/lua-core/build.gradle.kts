@@ -6,7 +6,8 @@ val moduleName = "lua-core"
 
 dependencies {
     api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:idl-core:${LibExt.jParserVersion}")
+    api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
+    api("com.github.xpenatan.jParser:runtime-core:${LibExt.jParserVersion}")
 }
 
 tasks.named("clean") {

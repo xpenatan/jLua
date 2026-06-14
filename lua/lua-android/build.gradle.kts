@@ -28,6 +28,10 @@ android {
 }
 
 dependencies {
+    api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
+    api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
+    api("com.github.xpenatan.jParser:runtime-jni:${LibExt.jParserVersion}")
+    api("com.github.xpenatan.jParser:runtime-android:${LibExt.jParserVersion}")
 }
 
 publishing {

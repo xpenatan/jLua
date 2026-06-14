@@ -1,10 +1,10 @@
 package lua.extension;
 
-import com.github.xpenatan.jParser.idl.IDLBase;
+import com.github.xpenatan.jParser.api.NativeObject;
+import com.github.xpenatan.jparser.runtime.helper.NativeString;
 import java.util.HashMap;
 import lua.LuaFunction;
 import lua.LuaState;
-import lua.idl.helper.IDLString;
 import lua.extension.register.DefaultImportFunction;
 import lua.extension.register.ImportListener;
 
@@ -65,8 +65,8 @@ public class LuaExt {
         status.code = luaState.lua_pcall(0, 0, 0);
         status.error = "";
         if(!status.isValid()) {
-            IDLString idlString = luaState.lua_tostring(-1);
-            status.error = idlString.c_str();
+            NativeString nativeString = luaState.lua_tostring(-1);
+            status.error = nativeString.c_str();
         }
         return status;
     }
@@ -79,8 +79,8 @@ public class LuaExt {
         status.code = luaState.lua_pcall(nargs, nresults, msgh);
         status.error = "";
         if(!status.isValid()) {
-            IDLString idlString = luaState.lua_tostring(-1);
-            status.error = idlString.c_str();
+            NativeString nativeString = luaState.lua_tostring(-1);
+            status.error = nativeString.c_str();
         }
         return status;
     }
@@ -121,9 +121,9 @@ public class LuaExt {
         int top = luaState.lua_gettop();
         boolean containsTable = luaState.lua_istable(-1) != 0;
         if(containsTable) {
-            IDLString idlString = luaState.dumpTable();
-            String s = idlString.c_str();
-            IDLBase addr = luaState.lua_topointer(-1);
+            NativeString nativeString = luaState.dumpTable();
+            String s = nativeString.c_str();
+            NativeObject addr = luaState.lua_topointer(-1);
             dumpTable += "### BEGIN TABLE ###\nTable: " + table + " - Addr: " + addr + "\n"+ s + "### END TABLE ###";
         }
         else {
@@ -134,8 +134,8 @@ public class LuaExt {
     }
 
     public static String dumpStack(LuaState luaState) {
-        IDLString idlString = luaState.dumpStack();
-        String s = idlString.c_str();
+        NativeString nativeString = luaState.dumpStack();
+        String s = nativeString.c_str();
         return "### BEGIN STACK ###\n" + s + "### END STACK ###";
     }
 }

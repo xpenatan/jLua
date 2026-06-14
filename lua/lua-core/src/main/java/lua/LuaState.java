@@ -3,42 +3,18 @@
  *
  * Do not make changes to this file
  *-------------------------------------------------------*/
+
 package lua;
 
-import com.github.xpenatan.jParser.idl.IDLBase;
-import lua.idl.helper.IDLString;
+import com.github.xpenatan.jParser.api.NativeObject;
+import com.github.xpenatan.jparser.runtime.helper.NativeString;
 
-public class LuaState extends IDLBase {
-
-    private IDLBase IDLBase_TEMP_GEN_0;
-
-    private IDLString IDLString_TEMP_GEN_0;
-
-    private IDLString IDLString_TEMP_GEN_1;
-
-    private IDLBase IDLBase_TEMP_GEN_1;
-
-    private IDLString IDLString_TEMP_GEN_2;
-
-    private IDLBase IDLBase_TEMP_GEN_2;
-
-    private IDLString IDLString_TEMP_GEN_3;
-
-    private IDLString IDLString_TEMP_GEN_4;
-
-    private IDLString IDLString_TEMP_GEN_5;
+public class LuaState extends NativeObject {
 
     static public final LuaState NULL = LuaState.native_new();
 
     public LuaState() {
-        long addr = internal_native_create();
-        internal_reset(addr, true);
     }
-
-    /*[-JNI;-NATIVE]
-return (jlong)new LuaState();
-*/
-    public static native long internal_native_create();
 
     /**
      * Dummy constructor, used internally to creates objects without C++ pointer
@@ -54,1071 +30,363 @@ return (jlong)new LuaState();
         return new LuaState((byte) 0, (char) 0);
     }
 
-    protected void deleteNative() {
-        internal_native_deleteNative(native_address);
-    }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-delete nativeObject;
-*/
-    public static native void internal_native_deleteNative(long this_addr);
-
     public void lua_absindex(int idx) {
-        internal_native_x_lua_absindex(native_address, idx);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_absindex((int)idx);
-*/
-    public static native void internal_native_x_lua_absindex(long this_addr, int idx);
 
     public void lua_arith(int op) {
-        internal_native_x_lua_arith(native_address, op);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_arith((int)op);
-*/
-    public static native void internal_native_x_lua_arith(long this_addr, int op);
 
     public int lua_checkstack(int n) {
-        return internal_native_x_lua_checkstack(native_address, n);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_checkstack((int)n);
-*/
-    public static native int internal_native_x_lua_checkstack(long this_addr, int n);
 
     public int lua_compare(int index1, int index2, int op) {
-        return internal_native_x_lua_compare(native_address, index1, index2, op);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_compare((int)index1, (int)index2, (int)op);
-*/
-    public static native int internal_native_x_lua_compare(long this_addr, int index1, int index2, int op);
 
     public void lua_concat(int op, int n) {
-        internal_native_x_lua_concat(native_address, op, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_concat((int)op, (int)n);
-*/
-    public static native void internal_native_x_lua_concat(long this_addr, int op, int n);
 
     public void lua_copy(int fromidx, int toidx) {
-        internal_native_x_lua_copy(native_address, fromidx, toidx);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_copy((int)fromidx, (int)toidx);
-*/
-    public static native void internal_native_x_lua_copy(long this_addr, int fromidx, int toidx);
 
     public void lua_createtable(int narr, int nrec) {
-        internal_native_x_lua_createtable(native_address, narr, nrec);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_createtable((int)narr, (int)nrec);
-*/
-    public static native void internal_native_x_lua_createtable(long this_addr, int narr, int nrec);
 
     public int lua_getfield(int index, String k) {
-        return internal_native_x_lua_getfield(native_address, index, k);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_getfield((int)index, k);
-*/
-    public static native int internal_native_x_lua_getfield(long this_addr, int index, String k);
 
     public int lua_getglobal(String name) {
-        return internal_native_x_lua_getglobal(native_address, name);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_getglobal(name);
-*/
-    public static native int internal_native_x_lua_getglobal(long this_addr, String name);
 
     public int lua_geti(int index, int i) {
-        return internal_native_x_lua_geti(native_address, index, i);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_geti((int)index, (int)i);
-*/
-    public static native int internal_native_x_lua_geti(long this_addr, int index, int i);
 
     public int lua_getmetatable(int index) {
-        return internal_native_x_lua_getmetatable(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_getmetatable((int)index);
-*/
-    public static native int internal_native_x_lua_getmetatable(long this_addr, int index);
 
     public int lua_gettable(int index) {
-        return internal_native_x_lua_gettable(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_gettable((int)index);
-*/
-    public static native int internal_native_x_lua_gettable(long this_addr, int index);
 
     public int lua_gettop() {
-        return internal_native_x_lua_gettop(native_address);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_gettop();
-*/
-    public static native int internal_native_x_lua_gettop(long this_addr);
 
     public int lua_getiuservalue(int index, int n) {
-        return internal_native_x_lua_getiuservalue(native_address, index, n);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_getiuservalue((int)index, (int)n);
-*/
-    public static native int internal_native_x_lua_getiuservalue(long this_addr, int index, int n);
 
     public void lua_insert(int index) {
-        internal_native_x_lua_insert(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_insert((int)index);
-*/
-    public static native void internal_native_x_lua_insert(long this_addr, int index);
 
     public int lua_isboolean(int index) {
-        return internal_native_x_lua_isboolean(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isboolean((int)index);
-*/
-    public static native int internal_native_x_lua_isboolean(long this_addr, int index);
 
     public int lua_iscfunction(int index) {
-        return internal_native_x_lua_iscfunction(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_iscfunction((int)index);
-*/
-    public static native int internal_native_x_lua_iscfunction(long this_addr, int index);
 
     public int lua_isfunction(int index) {
-        return internal_native_x_lua_isfunction(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isfunction((int)index);
-*/
-    public static native int internal_native_x_lua_isfunction(long this_addr, int index);
 
     public int lua_isinteger(int index) {
-        return internal_native_x_lua_isinteger(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isinteger((int)index);
-*/
-    public static native int internal_native_x_lua_isinteger(long this_addr, int index);
 
     public int lua_islightuserdata(int index) {
-        return internal_native_x_lua_islightuserdata(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_islightuserdata((int)index);
-*/
-    public static native int internal_native_x_lua_islightuserdata(long this_addr, int index);
 
     public int lua_isnil(int index) {
-        return internal_native_x_lua_isnil(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isnil((int)index);
-*/
-    public static native int internal_native_x_lua_isnil(long this_addr, int index);
 
     public int lua_isnone(int index) {
-        return internal_native_x_lua_isnone(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isnone((int)index);
-*/
-    public static native int internal_native_x_lua_isnone(long this_addr, int index);
 
     public int lua_isnoneornil(int index) {
-        return internal_native_x_lua_isnoneornil(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isnoneornil((int)index);
-*/
-    public static native int internal_native_x_lua_isnoneornil(long this_addr, int index);
 
     public int lua_isnumber(int index) {
-        return internal_native_x_lua_isnumber(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isnumber((int)index);
-*/
-    public static native int internal_native_x_lua_isnumber(long this_addr, int index);
 
     public int lua_isstring(int index) {
-        return internal_native_x_lua_isstring(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isstring((int)index);
-*/
-    public static native int internal_native_x_lua_isstring(long this_addr, int index);
 
     public int lua_istable(int index) {
-        return internal_native_x_lua_istable(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_istable((int)index);
-*/
-    public static native int internal_native_x_lua_istable(long this_addr, int index);
 
     public int lua_isthread(int index) {
-        return internal_native_x_lua_isthread(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isthread((int)index);
-*/
-    public static native int internal_native_x_lua_isthread(long this_addr, int index);
 
     public int lua_isuserdata(int index) {
-        return internal_native_x_lua_isuserdata(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isuserdata((int)index);
-*/
-    public static native int internal_native_x_lua_isuserdata(long this_addr, int index);
 
     public int lua_isyieldable() {
-        return internal_native_x_lua_isyieldable(native_address);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_isyieldable();
-*/
-    public static native int internal_native_x_lua_isyieldable(long this_addr);
 
     public void lua_len(int index) {
-        internal_native_x_lua_len(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_len((int)index);
-*/
-    public static native void internal_native_x_lua_len(long this_addr, int index);
 
     public void lua_newtable() {
-        internal_native_x_lua_newtable(native_address);
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_newtable();
-*/
-    public static native void internal_native_x_lua_newtable(long this_addr);
-
-    public IDLBase lua_newuserdatauv(int size, int nuvalue) {
-        long pointer = internal_native_x_lua_newuserdatauv(native_address, size, nuvalue);
-        if (pointer == 0)
-            return IDLBase.NULL;
-        if (IDLBase_TEMP_GEN_0 == null)
-            IDLBase_TEMP_GEN_0 = IDLBase.native_new();
-        IDLBase_TEMP_GEN_0.internal_reset(pointer, false);
-        return IDLBase_TEMP_GEN_0;
+    public NativeObject lua_newuserdatauv(int size, int nuvalue) {
+        return null;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return (jlong)nativeObject->x_lua_newuserdatauv(size, (int)nuvalue);
-*/
-    public static native long internal_native_x_lua_newuserdatauv(long this_addr, int size, int nuvalue);
 
     public int lua_next(int index) {
-        return internal_native_x_lua_next(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_next((int)index);
-*/
-    public static native int internal_native_x_lua_next(long this_addr, int index);
 
     public void lua_call(int nargs, int nresults) {
-        internal_native_x_lua_call(native_address, nargs, nresults);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_call((int)nargs, (int)nresults);
-*/
-    public static native void internal_native_x_lua_call(long this_addr, int nargs, int nresults);
 
     public int lua_pcall(int nargs, int nresults, int msgh) {
-        return internal_native_x_lua_pcall(native_address, nargs, nresults, msgh);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_pcall((int)nargs, (int)nresults, (int)msgh);
-*/
-    public static native int internal_native_x_lua_pcall(long this_addr, int nargs, int nresults, int msgh);
 
     public void lua_pop(int n) {
-        internal_native_x_lua_pop(native_address, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pop((int)n);
-*/
-    public static native void internal_native_x_lua_pop(long this_addr, int n);
 
     public void lua_pushboolean(int b) {
-        internal_native_x_lua_pushboolean(native_address, b);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushboolean((int)b);
-*/
-    public static native void internal_native_x_lua_pushboolean(long this_addr, int b);
 
     public void lua_pushcclosure(LuaFunction callback, int n) {
-        internal_native_x_lua_pushcclosure(native_address, callback.native_address, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushcclosure((LuaFunction* )callback_addr, (int)n);
-*/
-    public static native void internal_native_x_lua_pushcclosure(long this_addr, long callback_addr, int n);
 
     public void lua_pushcfunction(LuaFunction callback) {
-        internal_native_x_lua_pushcfunction(native_address, callback.native_address);
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushcfunction((LuaFunction* )callback_addr);
-*/
-    public static native void internal_native_x_lua_pushcfunction(long this_addr, long callback_addr);
-
-    public IDLString lua_pushfstring(String fmt) {
-        long pointer = internal_native_x_lua_pushfstring(native_address, fmt);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_0 == null)
-            IDLString_TEMP_GEN_0 = IDLString.native_new();
-        IDLString_TEMP_GEN_0.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_0;
+    public NativeString lua_pushfstring(String fmt) {
+        return null;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->x_lua_pushfstring(fmt);
-return (jlong)&copy_addr;*/
-    public static native long internal_native_x_lua_pushfstring(long this_addr, String fmt);
 
     public void lua_pushglobaltable() {
-        internal_native_x_lua_pushglobaltable(native_address);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushglobaltable();
-*/
-    public static native void internal_native_x_lua_pushglobaltable(long this_addr);
 
     public void lua_pushinteger(int n) {
-        internal_native_x_lua_pushinteger(native_address, n);
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushinteger((int)n);
-*/
-    public static native void internal_native_x_lua_pushinteger(long this_addr, int n);
-
-    public void lua_pushlightuserdata(IDLBase n) {
-        internal_native_x_lua_pushlightuserdata(native_address, n.native_void_address);
+    public void lua_pushlightuserdata(NativeObject n) {
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushlightuserdata((void*)n_addr);
-*/
-    public static native void internal_native_x_lua_pushlightuserdata(long this_addr, long n_addr);
-
-    public IDLString lua_pushlstring(String s, int len) {
-        long pointer = internal_native_x_lua_pushlstring(native_address, s, len);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_1 == null)
-            IDLString_TEMP_GEN_1 = IDLString.native_new();
-        IDLString_TEMP_GEN_1.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_1;
+    public NativeString lua_pushlstring(String s, int len) {
+        return null;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->x_lua_pushlstring(s, (int)len);
-return (jlong)&copy_addr;*/
-    public static native long internal_native_x_lua_pushlstring(long this_addr, String s, int len);
 
     public void lua_pushnil() {
-        internal_native_x_lua_pushnil(native_address);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushnil();
-*/
-    public static native void internal_native_x_lua_pushnil(long this_addr);
 
     public void lua_pushnumber(double n) {
-        internal_native_x_lua_pushnumber(native_address, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushnumber((double)n);
-*/
-    public static native void internal_native_x_lua_pushnumber(long this_addr, double n);
 
     public void lua_pushstring(String s) {
-        internal_native_x_lua_pushstring(native_address, s);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushstring(s);
-*/
-    public static native void internal_native_x_lua_pushstring(long this_addr, String s);
 
     public int lua_pushthread() {
-        return internal_native_x_lua_pushthread(native_address);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_pushthread();
-*/
-    public static native int internal_native_x_lua_pushthread(long this_addr);
 
     public void lua_pushvalue(int index) {
-        internal_native_x_lua_pushvalue(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_pushvalue((int)index);
-*/
-    public static native void internal_native_x_lua_pushvalue(long this_addr, int index);
 
     public int lua_rawequal(int index1, int index2) {
-        return internal_native_x_lua_rawequal(native_address, index1, index2);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_rawequal((int)index1, (int)index2);
-*/
-    public static native int internal_native_x_lua_rawequal(long this_addr, int index1, int index2);
 
     public int lua_rawget(int index) {
-        return internal_native_x_lua_rawget(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_rawget((int)index);
-*/
-    public static native int internal_native_x_lua_rawget(long this_addr, int index);
 
     public int lua_rawgeti(int index, int n) {
-        return internal_native_x_lua_rawgeti(native_address, index, n);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_rawgeti((int)index, (int)n);
-*/
-    public static native int internal_native_x_lua_rawgeti(long this_addr, int index, int n);
 
     public void lua_rawset(int index) {
-        internal_native_x_lua_rawset(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_rawset((int)index);
-*/
-    public static native void internal_native_x_lua_rawset(long this_addr, int index);
 
     public void lua_rawseti(int index, int i) {
-        internal_native_x_lua_rawseti(native_address, index, i);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_rawseti((int)index, (int)i);
-*/
-    public static native void internal_native_x_lua_rawseti(long this_addr, int index, int i);
 
     public void lua_remove(int index) {
-        internal_native_x_lua_remove(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_remove((int)index);
-*/
-    public static native void internal_native_x_lua_remove(long this_addr, int index);
 
     public void lua_replace(int index) {
-        internal_native_x_lua_replace(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_replace((int)index);
-*/
-    public static native void internal_native_x_lua_replace(long this_addr, int index);
 
     public int lua_resetthread(int index) {
-        return internal_native_x_lua_resetthread(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_resetthread((int)index);
-*/
-    public static native int internal_native_x_lua_resetthread(long this_addr, int index);
 
     public void lua_rotate(int index, int n) {
-        internal_native_x_lua_rotate(native_address, index, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_rotate((int)index, (int)n);
-*/
-    public static native void internal_native_x_lua_rotate(long this_addr, int index, int n);
 
     public void lua_setfield(int index, String k) {
-        internal_native_x_lua_setfield(native_address, index, k);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_setfield((int)index, k);
-*/
-    public static native void internal_native_x_lua_setfield(long this_addr, int index, String k);
 
     public void lua_setglobal(String name) {
-        internal_native_x_lua_setglobal(native_address, name);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_setglobal(name);
-*/
-    public static native void internal_native_x_lua_setglobal(long this_addr, String name);
 
     public void lua_seti(int index, int n) {
-        internal_native_x_lua_seti(native_address, index, n);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_seti((int)index, (int)n);
-*/
-    public static native void internal_native_x_lua_seti(long this_addr, int index, int n);
 
     public int lua_setuservalue(int index) {
-        return internal_native_x_lua_setuservalue(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_setuservalue((int)index);
-*/
-    public static native int internal_native_x_lua_setuservalue(long this_addr, int index);
 
     public int lua_setiuservalue(int index, int n) {
-        return internal_native_x_lua_setiuservalue(native_address, index, n);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_setiuservalue((int)index, (int)n);
-*/
-    public static native int internal_native_x_lua_setiuservalue(long this_addr, int index, int n);
 
     public int lua_setmetatable(int index) {
-        return internal_native_x_lua_setmetatable(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_setmetatable((int)index);
-*/
-    public static native int internal_native_x_lua_setmetatable(long this_addr, int index);
 
     public void lua_settable(int index) {
-        internal_native_x_lua_settable(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_settable((int)index);
-*/
-    public static native void internal_native_x_lua_settable(long this_addr, int index);
 
     public void lua_settop(int index) {
-        internal_native_x_lua_settop(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_settop((int)index);
-*/
-    public static native void internal_native_x_lua_settop(long this_addr, int index);
 
     public int lua_status() {
-        return internal_native_x_lua_status(native_address);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_status();
-*/
-    public static native int internal_native_x_lua_status(long this_addr);
 
     public int lua_stringtonumber(String s) {
-        return internal_native_x_lua_stringtonumber(native_address, s);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_stringtonumber(s);
-*/
-    public static native int internal_native_x_lua_stringtonumber(long this_addr, String s);
 
     public int lua_toboolean(int index) {
-        return internal_native_x_lua_toboolean(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_toboolean((int)index);
-*/
-    public static native int internal_native_x_lua_toboolean(long this_addr, int index);
 
     public void lua_toclose(int index) {
-        internal_native_x_lua_toclose(native_address, index);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_toclose((int)index);
-*/
-    public static native void internal_native_x_lua_toclose(long this_addr, int index);
 
     public int lua_tointeger(int index) {
-        return internal_native_x_lua_tointeger(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_tointeger((int)index);
-*/
-    public static native int internal_native_x_lua_tointeger(long this_addr, int index);
 
     public double lua_tonumber(int index) {
-        return internal_native_x_lua_tonumber(native_address, index);
+        return 0;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_tonumber((int)index);
-*/
-    public static native double internal_native_x_lua_tonumber(long this_addr, int index);
-
-    public IDLBase lua_topointer(int index) {
-        long pointer = internal_native_x_lua_topointer(native_address, index);
-        if (pointer == 0)
-            return IDLBase.NULL;
-        if (IDLBase_TEMP_GEN_1 == null)
-            IDLBase_TEMP_GEN_1 = IDLBase.native_new();
-        IDLBase_TEMP_GEN_1.internal_reset(pointer, false);
-        return IDLBase_TEMP_GEN_1;
+    public NativeObject lua_topointer(int index) {
+        return null;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return (jlong)nativeObject->x_lua_topointer((int)index);
-*/
-    public static native long internal_native_x_lua_topointer(long this_addr, int index);
-
-    public IDLString lua_tostring(int index) {
-        long pointer = internal_native_x_lua_tostring(native_address, index);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_2 == null)
-            IDLString_TEMP_GEN_2 = IDLString.native_new();
-        IDLString_TEMP_GEN_2.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_2;
+    public NativeString lua_tostring(int index) {
+        return null;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->x_lua_tostring((int)index);
-return (jlong)&copy_addr;*/
-    public static native long internal_native_x_lua_tostring(long this_addr, int index);
-
-    public IDLBase lua_touserdata(int index) {
-        long pointer = internal_native_x_lua_touserdata(native_address, index);
-        if (pointer == 0)
-            return IDLBase.NULL;
-        if (IDLBase_TEMP_GEN_2 == null)
-            IDLBase_TEMP_GEN_2 = IDLBase.native_new();
-        IDLBase_TEMP_GEN_2.internal_reset(pointer, false);
-        return IDLBase_TEMP_GEN_2;
+    public NativeObject lua_touserdata(int index) {
+        return null;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return (jlong)nativeObject->x_lua_touserdata((int)index);
-*/
-    public static native long internal_native_x_lua_touserdata(long this_addr, int index);
 
     public int lua_type(int index) {
-        return internal_native_x_lua_type(native_address, index);
+        return 0;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_type((int)index);
-*/
-    public static native int internal_native_x_lua_type(long this_addr, int index);
-
-    public IDLString lua_typename(int tp) {
-        long pointer = internal_native_x_lua_typename(native_address, tp);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_3 == null)
-            IDLString_TEMP_GEN_3 = IDLString.native_new();
-        IDLString_TEMP_GEN_3.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_3;
+    public NativeString lua_typename(int tp) {
+        return null;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->x_lua_typename((int)tp);
-return (jlong)&copy_addr;*/
-    public static native long internal_native_x_lua_typename(long this_addr, int tp);
 
     public int lua_upvalueindex(int i) {
-        return internal_native_x_lua_upvalueindex(native_address, i);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_upvalueindex((int)i);
-*/
-    public static native int internal_native_x_lua_upvalueindex(long this_addr, int i);
 
     public double lua_version() {
-        return internal_native_x_lua_version(native_address);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_version();
-*/
-    public static native double internal_native_x_lua_version(long this_addr);
 
     public void lua_warning(String msg, int tocont) {
-        internal_native_x_lua_warning(native_address, msg, tocont);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_lua_warning(msg, (int)tocont);
-*/
-    public static native void internal_native_x_lua_warning(long this_addr, String msg, int tocont);
 
     public int lua_yield(int nresults) {
-        return internal_native_x_lua_yield(native_address, nresults);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_lua_yield((int)nresults);
-*/
-    public static native int internal_native_x_lua_yield(long this_addr, int nresults);
 
     public int luaL_loadstring(String s) {
-        return internal_native_x_luaL_loadstring(native_address, s);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_loadstring(s);
-*/
-    public static native int internal_native_x_luaL_loadstring(long this_addr, String s);
 
     public void luaL_error(String fmt) {
-        internal_native_x_luaL_error(native_address, fmt);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_luaL_error(fmt);
-*/
-    public static native void internal_native_x_luaL_error(long this_addr, String fmt);
 
     public void luaL_argerror(int arg, String extramsg) {
-        internal_native_x_luaL_argerror(native_address, arg, extramsg);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_luaL_argerror((int)arg, extramsg);
-*/
-    public static native void internal_native_x_luaL_argerror(long this_addr, int arg, String extramsg);
 
     public void luaL_checkversion() {
-        internal_native_x_luaL_checkversion(native_address);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_luaL_checkversion();
-*/
-    public static native void internal_native_x_luaL_checkversion(long this_addr);
 
     public int luaL_newmetatable(String tname) {
-        return internal_native_x_luaL_newmetatable(native_address, tname);
+        return 0;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_newmetatable(tname);
-*/
-    public static native int internal_native_x_luaL_newmetatable(long this_addr, String tname);
-
-    public int luaL_getmetafield(int obj, String e) {
-        return internal_native_x_luaL_getmetafield(native_address, obj, e);
+    public int luaL_getmetafield(int obj, String fieldName) {
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_getmetafield((int)obj, e);
-*/
-    public static native int internal_native_x_luaL_getmetafield(long this_addr, int obj, String e);
 
     public int luaL_getmetatable(String tname) {
-        return internal_native_x_luaL_getmetatable(native_address, tname);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_getmetatable(tname);
-*/
-    public static native int internal_native_x_luaL_getmetatable(long this_addr, String tname);
 
     public int luaL_getsubtable(int idx, String fname) {
-        return internal_native_x_luaL_getsubtable(native_address, idx, fname);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_getsubtable((int)idx, fname);
-*/
-    public static native int internal_native_x_luaL_getsubtable(long this_addr, int idx, String fname);
 
     public int luaL_len(int index) {
-        return internal_native_x_luaL_len(native_address, index);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_len((int)index);
-*/
-    public static native int internal_native_x_luaL_len(long this_addr, int index);
 
     public void luaL_pushfail() {
-        internal_native_x_luaL_pushfail(native_address);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_luaL_pushfail();
-*/
-    public static native void internal_native_x_luaL_pushfail(long this_addr);
 
     public int luaL_ref(int t) {
-        return internal_native_x_luaL_ref(native_address, t);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_ref((int)t);
-*/
-    public static native int internal_native_x_luaL_ref(long this_addr, int t);
 
     public void luaL_unref(int t, int ref) {
-        internal_native_x_luaL_unref(native_address, t, ref);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->x_luaL_unref((int)t, (int)ref);
-*/
-    public static native void internal_native_x_luaL_unref(long this_addr, int t, int ref);
 
     public int luaL_typeerror(int arg, String tname) {
-        return internal_native_x_luaL_typeerror(native_address, arg, tname);
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-return nativeObject->x_luaL_typeerror((int)arg, tname);
-*/
-    public static native int internal_native_x_luaL_typeerror(long this_addr, int arg, String tname);
 
     public void createContext() {
-        internal_native_createContext(native_address);
     }
-
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->createContext();
-*/
-    public static native void internal_native_createContext(long this_addr);
 
     public void destroyContext() {
-        internal_native_destroyContext(native_address);
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-nativeObject->destroyContext();
-*/
-    public static native void internal_native_destroyContext(long this_addr);
-
-    public IDLString dumpStack() {
-        long pointer = internal_native_dumpStack(native_address);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_4 == null)
-            IDLString_TEMP_GEN_4 = IDLString.native_new();
-        IDLString_TEMP_GEN_4.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_4;
+    public NativeString dumpStack() {
+        return null;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->dumpStack();
-return (jlong)&copy_addr;*/
-    public static native long internal_native_dumpStack(long this_addr);
-
-    public IDLString dumpTable() {
-        long pointer = internal_native_dumpTable(native_address);
-        if (pointer == 0)
-            return IDLString.NULL;
-        if (IDLString_TEMP_GEN_5 == null)
-            IDLString_TEMP_GEN_5 = IDLString.native_new();
-        IDLString_TEMP_GEN_5.internal_reset(pointer, false);
-        return IDLString_TEMP_GEN_5;
+    public NativeString dumpTable() {
+        return null;
     }
 
-    /*[-JNI;-NATIVE]
-LuaState* nativeObject = (LuaState*)this_addr;
-static IDLString copy_addr;
-copy_addr = nativeObject->dumpTable();
-return (jlong)&copy_addr;*/
-    public static native long internal_native_dumpTable(long this_addr);
-
-    public static void setIntToVoid(IDLBase pointer, int value) {
-        internal_native_setIntToVoid(pointer.native_void_address, value);
+    public static void setIntToVoid(NativeObject pointer, int value) {
     }
 
-    /*[-JNI;-NATIVE]
-LuaState::setIntToVoid((void*)pointer_addr, (int)value);
-*/
-    public static native void internal_native_setIntToVoid(long pointer_addr, int value);
-
-    public static int getIntFromVoid(IDLBase pointer) {
-        return internal_native_getIntFromVoid(pointer.native_void_address);
+    public static int getIntFromVoid(NativeObject pointer) {
+        return 0;
     }
-
-    /*[-JNI;-NATIVE]
-return LuaState::getIntFromVoid((void*)pointer_addr);
-*/
-    public static native int internal_native_getIntFromVoid(long pointer_addr);
 }

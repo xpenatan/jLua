@@ -30,11 +30,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Set up MinGW
         uses: msys2/setup-msys2@v2
@@ -53,8 +53,11 @@ jobs:
       - name: Download sources
         run: ./gradlew :lua:lua-build:lua_download_source
 
-      - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_windows64
+      - name: Build JNI project
+        run: ./gradlew :lua:lua-build:lua_build_project_windows64_jni
+
+      - name: Build FFM project
+        run: ./gradlew :lua:lua-build:lua_build_project_windows64_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
@@ -76,11 +79,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Set up MinGW
         run: |
@@ -92,8 +95,11 @@ jobs:
       - name: Download sources
         run: ./gradlew :lua:lua-build:lua_download_source
 
-      - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_linux64
+      - name: Build JNI project
+        run: ./gradlew :lua:lua-build:lua_build_project_linux64_jni
+
+      - name: Build FFM project
+        run: ./gradlew :lua:lua-build:lua_build_project_linux64_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
@@ -115,11 +121,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
@@ -127,8 +133,11 @@ jobs:
       - name: Download sources
         run: ./gradlew :lua:lua-build:lua_download_source
 
-      - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_mac64 :lua:lua-build:lua_build_project_macArm
+      - name: Build JNI project
+        run: ./gradlew :lua:lua-build:lua_build_project_mac64_jni :lua:lua-build:lua_build_project_macArm_jni
+
+      - name: Build FFM project
+        run: ./gradlew :lua:lua-build:lua_build_project_mac64_ffm :lua:lua-build:lua_build_project_macArm_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
@@ -137,8 +146,8 @@ jobs:
           path: ./lua/lua-build/build/c++/libs/
           if-no-files-found: error
 
-  build_teavm:
-    name: Build TeaVM
+  build_web:
+    name: Build Web
     runs-on: ubuntu-latest
 
     steps:
@@ -150,11 +159,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Set up MinGW
         run: |
@@ -172,12 +181,12 @@ jobs:
         run: ./gradlew :lua:lua-build:lua_download_source
 
       - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_teavm
+        run: ./gradlew :lua:lua-build:lua_build_project_web
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
         with:
-          name: teavm-natives
+          name: web-natives
           path: ./lua/lua-build/build/c++/libs/
           if-no-files-found: error
 
@@ -194,11 +203,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Set up MinGW
         run: |
@@ -231,7 +240,7 @@ jobs:
 
   upload_natives:
     name: Upload Natives
-    needs: [build_windows, build_linux, build_mac, build_android, build_teavm]
+    needs: [build_windows, build_linux, build_mac, build_android, build_web]
     runs-on: ubuntu-latest
 
     steps:
@@ -251,11 +260,11 @@ jobs:
           property: version
           default: 0.0.1
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
         with:
           distribution: "corretto"
-          java-version: 17
+          java-version: 25
 
       - name: Set up MinGW
         run: |
@@ -288,16 +297,18 @@ jobs:
           name: android-natives
           path: ./lua/lua-build/build/c++/libs/
 
-      - name: Download teavm natives
+      - name: Download web natives
         uses: actions/download-artifact@v4
         with:
-          name: teavm-natives
+          name: web-natives
           path: ./lua/lua-build/build/c++/libs/
 
       - name: Delete generated files
         run: |
           rm -rf lua/lua-core/src/main/java/*
-          rm -rf lua/lua-teavm/src/main/java/*
+          rm -rf lua/lua-jni/src/main/java/*
+          rm -rf lua/lua-ffm/src/main/java/*
+          rm -rf lua/lua-web/src/main/java/*
           echo "Deleted generated files"
 
       - name: Generate Lua classes
