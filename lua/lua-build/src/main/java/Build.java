@@ -127,6 +127,7 @@ public class Build {
         // Make a static library
         LinuxTarget linuxTarget = new LinuxTarget(SourceLanguage.C);
         linuxTarget.isStatic = true;
+        linuxTarget.cppFlags.add("-fPIC");
         linuxTarget.headerDirs.add("-I" + sourceDir);
         linuxTarget.cppInclude.add(sourceDir + "/*.c");
         linuxTarget.cppExclude.add(sourceDir + "/lua.c");
@@ -138,6 +139,7 @@ public class Build {
         LinuxTarget linkTarget = new LinuxTarget();
         linkTarget.libDirSuffix += api;
         linkTarget.cppFlags.add("-std=c++17");
+        linkTarget.cppFlags.add("-fPIC");
         linkTarget.headerDirs.add("-I" + sourceDir);
         linkTarget.headerDirs.add("-I" + op.getCustomSourceDir());
         linkTarget.linkerFlags.add(libBuildCPPPath + "/libs/linux/liblua64_.a");
