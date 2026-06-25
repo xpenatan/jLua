@@ -11,6 +11,33 @@ dependencies {
     implementation("io.github.libfdx:gl_web:${LibExt.libfdxVersion}")
 }
 
+val luaBuildDir = project(":lua:lua-build").layout.buildDirectory
+val luaWebRuntimeFiles = files(
+    luaBuildDir.file("c++/libs/emscripten/lua.js"),
+    luaBuildDir.file("c++/libs/emscripten/lua.wasm")
+)
+
+fun copyLuaWebRuntime(webTargetDir: String) {
+    copy {
+        from(luaWebRuntimeFiles)
+        into(layout.buildDirectory.dir("dist/$webTargetDir/webapp/scripts"))
+    }
+}
+
+tasks.matching { it.name == "libfdx_web_js_prepare" }.configureEach {
+    dependsOn(":lua:lua-build:lua_build_project_web")
+    doLast {
+        copyLuaWebRuntime("web-js")
+    }
+}
+
+tasks.matching { it.name == "libfdx_web_wasm_prepare" }.configureEach {
+    dependsOn(":lua:lua-build:lua_build_project_web")
+    doLast {
+        copyLuaWebRuntime("web-wasm")
+    }
+}
+
 libfdx {
     js {
         mainClass.set("lua.example.basic.LuaBasicWebJsLauncher")
@@ -31,37 +58,4 @@ libfdx {
 java {
     sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
     targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-}
-
-val jsWebappDir = layout.buildDirectory.dir("dist/web-js/webapp")
-val wasmWebappDir = layout.buildDirectory.dir("dist/web-wasm/webapp")
-
-tasks.register("lua_basic_webgl_js_build") {
-    group = "application"
-    description = "Builds the WebGL JavaScript Lua sample web application."
-    dependsOn("libfdx_web_js_build")
-}
-
-tasks.register("lua_basic_webgl_wasm_build") {
-    group = "application"
-    description = "Builds the WebGL Wasm Lua sample web application."
-    dependsOn("libfdx_web_wasm_build")
-}
-
-tasks.register<io.github.libfdx.gradle.LibfdxRunWebTask>("lua_basic_webgl_js_run") {
-    group = "application"
-    description = "Builds and serves the WebGL JavaScript Lua sample web application."
-    dependsOn("lua_basic_webgl_js_build")
-    webappDir.set(jsWebappDir)
-    port.set(libfdx.js.serverPort)
-    defaultPath.set("/")
-}
-
-tasks.register<io.github.libfdx.gradle.LibfdxRunWebTask>("lua_basic_webgl_wasm_run") {
-    group = "application"
-    description = "Builds and serves the WebGL Wasm Lua sample web application."
-    dependsOn("lua_basic_webgl_wasm_build")
-    webappDir.set(wasmWebappDir)
-    port.set(libfdx.wasm.serverPort)
-    defaultPath.set("/")
 }

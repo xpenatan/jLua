@@ -24,11 +24,6 @@ dependencies {
     api("com.github.xpenatan.jParser:runtime-core:${LibExt.jParserVersion}")
     api("com.github.xpenatan.jParser:runtime-web:${LibExt.jParserVersion}")
     api("com.github.xpenatan.jParser:runtime-web_wasm:${LibExt.jParserVersion}")
-    api("org.teavm:teavm-jso:${LibExt.teaVMVersion}")
-    api("org.teavm:teavm-core:${LibExt.teaVMVersion}")
-    api("org.teavm:teavm-classlib:${LibExt.teaVMVersion}")
-    api("org.teavm:teavm-jso-apis:${LibExt.teaVMVersion}")
-
     compileOnlyApi("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
     api("com.github.xpenatan.jParser:loader-web:${LibExt.jParserVersion}")
     implementation("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
@@ -44,8 +39,8 @@ tasks.named("clean") {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java11Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java11Target)
+    sourceCompatibility = JavaVersion.toVersion(LibExt.java17Target)
+    targetCompatibility = JavaVersion.toVersion(LibExt.java17Target)
 }
 
 java {

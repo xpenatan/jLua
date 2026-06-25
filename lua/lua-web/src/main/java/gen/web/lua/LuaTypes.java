@@ -4,7 +4,7 @@
  * Do not make changes to this file
  *-------------------------------------------------------*/
 
-package gen.lua;
+package gen.web.lua;
 
 public class LuaTypes {
 

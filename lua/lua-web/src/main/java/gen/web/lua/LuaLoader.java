@@ -4,11 +4,11 @@
  * Do not make changes to this file
  *-------------------------------------------------------*/
 
-package gen.lua;
+package gen.web.lua;
 
 import com.github.xpenatan.jParser.loader.JParserLibraryLoader;
 import com.github.xpenatan.jParser.loader.JParserLibraryLoaderListener;
-import gen.com.github.xpenatan.jparser.runtime.RuntimeLoader;
+import gen.web.com.github.xpenatan.jparser.runtime.RuntimeLoader;
 
 /**
  * @author xpenatan

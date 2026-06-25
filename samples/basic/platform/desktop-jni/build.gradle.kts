@@ -44,12 +44,6 @@ tasks.register<JavaExec>("lua_basic_desktop_jni_run") {
     }
 }
 
-tasks.register("lua_basic_desktop_run") {
-    group = "application"
-    description = "Runs the libFDX desktop Lua sample with GL using JNI."
-    dependsOn("lua_basic_desktop_jni_run")
-}
-
 fun JavaExec.forwardSampleProperty(name: String) {
     providers.gradleProperty(name).orNull?.let { value ->
         systemProperty(name, value)

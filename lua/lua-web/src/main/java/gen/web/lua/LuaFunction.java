@@ -4,9 +4,9 @@
  * Do not make changes to this file
  *-------------------------------------------------------*/
 
-package gen.lua;
+package gen.web.lua;
 
-import gen.com.github.xpenatan.jParser.api.NativeObject;
+import gen.web.com.github.xpenatan.jParser.api.NativeObject;
 
 public class LuaFunction extends NativeObject {
 

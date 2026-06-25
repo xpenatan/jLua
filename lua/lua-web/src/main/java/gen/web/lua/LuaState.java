@@ -4,10 +4,10 @@
  * Do not make changes to this file
  *-------------------------------------------------------*/
 
-package gen.lua;
+package gen.web.lua;
 
-import gen.com.github.xpenatan.jParser.api.NativeObject;
-import gen.com.github.xpenatan.jparser.runtime.helper.NativeString;
+import gen.web.com.github.xpenatan.jParser.api.NativeObject;
+import gen.web.com.github.xpenatan.jparser.runtime.helper.NativeString;
 
 public class LuaState extends NativeObject {
 

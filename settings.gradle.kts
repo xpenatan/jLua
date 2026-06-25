@@ -12,7 +12,7 @@ pluginManagement {
         }
     }
     plugins {
-        id("io.github.libfdx") version "0.0.1"
+        id("io.github.libfdx") version "-SNAPSHOT"
     }
 }
 

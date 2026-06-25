@@ -11,12 +11,12 @@ object LibExt {
         }
 
     const val java8Target = "1.8"
-    const val java11Target = "11"
+    const val java17Target = "17"
     const val java25Target = "25"
 
-    const val jParserVersion = "1.1.4"
-    const val teaVMVersion = "0.14.1"
-    const val libfdxVersion = "0.0.1"
+    const val jParserVersion = "-SNAPSHOT"
+    const val teaVMVersion = "0.15.0"
+    const val libfdxVersion = "-SNAPSHOT"
 }
 
 private fun getVersion(): String {
