@@ -51,19 +51,19 @@ jobs:
           value: $env:PATH;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build
 
       - name: Download sources
-        run: ./gradlew :lua:lua-build:lua_download_source
+        run: ./gradlew :lua:download:lua_download_source
 
       - name: Build JNI project
-        run: ./gradlew :lua:lua-build:lua_build_project_windows64_jni
+        run: ./gradlew :lua:builder:lua_build_project_windows64_jni
 
       - name: Build FFM project
-        run: ./gradlew :lua:lua-build:lua_build_project_windows64_ffm
+        run: ./gradlew :lua:builder:lua_build_project_windows64_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
         with:
           name: windows-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
           if-no-files-found: error
 
   build_linux:
@@ -93,19 +93,19 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Download sources
-        run: ./gradlew :lua:lua-build:lua_download_source
+        run: ./gradlew :lua:download:lua_download_source
 
       - name: Build JNI project
-        run: ./gradlew :lua:lua-build:lua_build_project_linux64_jni
+        run: ./gradlew :lua:builder:lua_build_project_linux64_jni
 
       - name: Build FFM project
-        run: ./gradlew :lua:lua-build:lua_build_project_linux64_ffm
+        run: ./gradlew :lua:builder:lua_build_project_linux64_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
         with:
           name: linux-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
           if-no-files-found: error
 
   build_mac:
@@ -131,19 +131,19 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Download sources
-        run: ./gradlew :lua:lua-build:lua_download_source
+        run: ./gradlew :lua:download:lua_download_source
 
       - name: Build JNI project
-        run: ./gradlew :lua:lua-build:lua_build_project_mac64_jni :lua:lua-build:lua_build_project_macArm_jni
+        run: ./gradlew :lua:builder:lua_build_project_mac64_jni :lua:builder:lua_build_project_macArm_jni
 
       - name: Build FFM project
-        run: ./gradlew :lua:lua-build:lua_build_project_mac64_ffm :lua:lua-build:lua_build_project_macArm_ffm
+        run: ./gradlew :lua:builder:lua_build_project_mac64_ffm :lua:builder:lua_build_project_macArm_ffm
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
         with:
           name: mac-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
           if-no-files-found: error
 
   build_web:
@@ -178,16 +178,16 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Download sources
-        run: ./gradlew :lua:lua-build:lua_download_source
+        run: ./gradlew :lua:download:lua_download_source
 
       - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_web
+        run: ./gradlew :lua:builder:lua_build_project_web
 
       - name: Upload natives
         uses: actions/upload-artifact@v4
         with:
           name: web-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
           if-no-files-found: error
 
   build_android:
@@ -224,10 +224,10 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Download sources
-        run: ./gradlew :lua:lua-build:lua_download_source
+        run: ./gradlew :lua:download:lua_download_source
 
       - name: Build project
-        run: ./gradlew :lua:lua-build:lua_build_project_android
+        run: ./gradlew :lua:builder:lua_build_project_android
         env:
           NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
@@ -235,7 +235,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: android-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
           if-no-files-found: error
 
   upload_natives:
@@ -277,42 +277,43 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: windows-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
 
       - name: Download linux natives
         uses: actions/download-artifact@v4
         with:
           name: linux-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
 
       - name: Download mac natives
         uses: actions/download-artifact@v4
         with:
           name: mac-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
 
       - name: Download android natives
         uses: actions/download-artifact@v4
         with:
           name: android-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
 
       - name: Download web natives
         uses: actions/download-artifact@v4
         with:
           name: web-natives
-          path: ./lua/lua-build/build/c++/libs/
+          path: ./lua/builder/build/c++/libs/
 
       - name: Delete generated files
         run: |
-          rm -rf lua/lua-core/src/main/java/*
-          rm -rf lua/lua-jni/src/main/java/*
-          rm -rf lua/lua-ffm/src/main/java/*
-          rm -rf lua/lua-web/src/main/java/*
+          rm -rf lua/core/src/main/java/*
+          rm -rf lua/shared/jni/src/main/java/*
+          rm -rf lua/shared/c/src/main/java/*
+          rm -rf lua/desktop/ffm/src/main/java/*
+          rm -rf lua/web/wasm/src/main/java/*
           echo "Deleted generated files"
 
       - name: Generate Lua classes
-        run: ./gradlew :lua:lua-build:lua_build_project
+        run: ./gradlew :lua:builder:lua_build_project
 
       - name: Configure Git
         run: |

@@ -3,7 +3,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("io.github.libfdx") apply false
-    id("org.jetbrains.kotlin.android") version "1.8.21" apply false
+    id("org.jetbrains.kotlin.android") version "2.2.21" apply false
 }
 
 buildscript {
@@ -12,10 +12,10 @@ buildscript {
         google()
     }
 
-    val kotlinVersion = "2.1.10"
+    val kotlinVersion = "2.2.21"
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.5.1")
+        classpath("com.android.tools.build:gradle:8.12.3")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     }
 }
@@ -23,7 +23,11 @@ buildscript {
 allprojects  {
 
     repositories {
-        mavenLocal()
+        mavenLocal {
+            content {
+                excludeGroup("com.github.xpenatan.jParser")
+            }
+        }
         google()
         mavenCentral()
         maven { url = uri("https://central.sonatype.com/repository/maven-snapshots/") }
@@ -33,6 +37,11 @@ allprojects  {
     configurations.configureEach {
         // Check for updates every sync
         resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+        resolutionStrategy.eachDependency {
+            if(requested.group == "com.github.xpenatan.jParser") {
+                useVersion(LibExt.jParserVersion)
+            }
+        }
     }
 }
 

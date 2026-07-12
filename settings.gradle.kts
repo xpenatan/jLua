@@ -16,23 +16,30 @@ pluginManagement {
     }
 }
 
+rootProject.name = "jLua"
+
 // Core
-include(":lua:lua-base")
-include(":lua:lua-build")
-include(":lua:lua-core")
-include(":lua:lua-jni")
-include(":lua:lua-ffm")
-include(":lua:lua-web")
-include(":lua:lua-android")
+include(":lua:builder")
+include(":lua:download")
+include(":lua:base")
+include(":lua:core")
+include(":lua:shared:jni")
+include(":lua:shared:c")
+include(":lua:desktop:jni")
+include(":lua:desktop:ffm")
+include(":lua:desktop:c")
+include(":lua:web:wasm")
+include(":lua:android:jni")
 
 // Extensions
 include(":extensions:lua-ext")
 
 // Samples
 include(":samples:basic:core")
-include(":samples:basic:platform:desktop-jni")
-include(":samples:basic:platform:desktop-ffm")
-include(":samples:basic:platform:web")
+include(":samples:basic:platforms:desktop-jni")
+include(":samples:basic:platforms:desktop-ffm")
+include(":samples:basic:platforms:desktop-c")
+include(":samples:basic:platforms:web")
 
 // #### Use include build to use other project source directly. Just update the source path ####
 
@@ -42,18 +49,34 @@ include(":samples:basic:platform:web")
 //        substitute(module("com.github.xpenatan.jParser:gen-build-tool")).using(project(":jParser:gen:gen-build-tool"))
 //        substitute(module("com.github.xpenatan.jParser:gen-core")).using(project(":jParser:gen:gen-core"))
 //        substitute(module("com.github.xpenatan.jParser:gen-idl")).using(project(":jParser:gen:gen-idl"))
+//        substitute(module("com.github.xpenatan.jParser:gen-c")).using(project(":jParser:gen:gen-c"))
 //        substitute(module("com.github.xpenatan.jParser:gen-ffm")).using(project(":jParser:gen:gen-ffm"))
 //        substitute(module("com.github.xpenatan.jParser:gen-jni")).using(project(":jParser:gen:gen-jni"))
 //        substitute(module("com.github.xpenatan.jParser:gen-web")).using(project(":jParser:gen:gen-web"))
 //        substitute(module("com.github.xpenatan.jParser:api-core")).using(project(":jParser:api:api-core"))
 //        substitute(module("com.github.xpenatan.jParser:api-web")).using(project(":jParser:api:api-web"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-base")).using(project(":jParser:runtime:runtime-base"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-core")).using(project(":jParser:runtime:runtime-core"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-android")).using(project(":jParser:runtime:runtime-android"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-ffm")).using(project(":jParser:runtime:runtime-ffm"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-jni")).using(project(":jParser:runtime:runtime-jni"))
-//        substitute(module("com.github.xpenatan.jParser:runtime-web")).using(project(":jParser:runtime:runtime-web"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-base")).using(project(":jParser:runtime:base"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-core")).using(project(":jParser:runtime:core"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-android")).using(project(":jParser:runtime:android:runtime-android"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-ffm")).using(project(":jParser:runtime:desktop:runtime-desktop-ffm"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-ffm_windows_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-ffm"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-ffm_linux_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-ffm"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-ffm_mac_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-ffm"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-ffm_mac_arm64")).using(project(":jParser:runtime:desktop:runtime-desktop-ffm"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-c")).using(project(":jParser:runtime:shared:runtime-c"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-c_windows_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-c"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-c_linux_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-c"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-c_mac_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-c"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-c_mac_arm64")).using(project(":jParser:runtime:desktop:runtime-desktop-c"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-jni")).using(project(":jParser:runtime:shared:runtime-jni"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-jni_windows_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-jni"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-jni_linux_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-jni"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-jni_mac_x64")).using(project(":jParser:runtime:desktop:runtime-desktop-jni"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-desktop-jni_mac_arm64")).using(project(":jParser:runtime:desktop:runtime-desktop-jni"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-web")).using(project(":jParser:runtime:web:runtime-web"))
+//        substitute(module("com.github.xpenatan.jParser:runtime-web_wasm")).using(project(":jParser:runtime:web:runtime-web"))
 //        substitute(module("com.github.xpenatan.jParser:loader-core")).using(project(":jParser:loader:loader-core"))
+//        substitute(module("com.github.xpenatan.jParser:loader-c")).using(project(":jParser:loader:loader-c"))
 //        substitute(module("com.github.xpenatan.jParser:loader-web")).using(project(":jParser:loader:loader-web"))
 //    }
 //}

@@ -6,7 +6,7 @@ val moduleName = "lua-ext"
 
 
 dependencies {
-    compileOnlyApi(project(":lua:lua-core"))
+    compileOnlyApi(project(":lua:core"))
 }
 
 java {
@@ -23,7 +23,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = moduleName
-            group = LibExt.groupId
+            groupId = LibExt.groupId
             version = LibExt.libVersion
             from(components["java"])
         }

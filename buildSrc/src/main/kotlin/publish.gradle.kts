@@ -3,10 +3,14 @@ import java.nio.file.Paths
 import java.net.URLEncoder
 
 var libProjects = mutableSetOf(
-    project(":lua:lua-core"),
-    project(":lua:lua-jni"),
-    project(":lua:lua-web"),
-    project(":lua:lua-android"),
+    project(":lua:core"),
+    project(":lua:shared:jni"),
+    project(":lua:shared:c"),
+    project(":lua:desktop:jni"),
+    project(":lua:desktop:ffm"),
+    project(":lua:desktop:c"),
+    project(":lua:web:wasm"),
+    project(":lua:android:jni"),
     project(":extensions:lua-ext")
 )
 
@@ -44,7 +48,7 @@ configure(libProjects) {
                 pom {
                     name.set(LibExt.libName)
                     description.set("Lua Java Bindings")
-                    url.set("https://github.com/xpenatan/xLua")
+                    url.set("https://github.com/xpenatan/jLua")
                     developers {
                         developer {
                             id.set("Xpe")
@@ -52,9 +56,9 @@ configure(libProjects) {
                         }
                     }
                     scm {
-                        connection.set("scm:git@github.com:xpenatan/xLua.git")
-                        developerConnection.set("scm:git@github.com:xpenatan/xLua.git")
-                        url.set("https://github.com/xpenatan/xLua")
+                        connection.set("scm:git@github.com:xpenatan/jLua.git")
+                        developerConnection.set("scm:git@github.com:xpenatan/jLua.git")
+                        url.set("https://github.com/xpenatan/jLua")
                     }
                     licenses {
                         license {

@@ -38,11 +38,11 @@ public final class LuaBasicApplication extends ApplicationAdapter {
         application = fdx.app();
         graphics = fdx.graphics().main();
         logger = fdx.logger();
-        exitAfterFrames = intProperty("xlua.sample.exitAfterFrames", -1);
-        failFast = booleanProperty("xlua.sample.failFast", false);
+        exitAfterFrames = intProperty("jlua.sample.exitAfterFrames", -1);
+        failFast = booleanProperty("jlua.sample.failFast", false);
         LuaLoader.init((isSuccess, error) -> {
             if(!isSuccess) {
-                fail("xLua failed to initialize", error);
+                fail("jLua failed to initialize", error);
                 return;
             }
             lua = new LuaExt();
@@ -53,8 +53,8 @@ public final class LuaBasicApplication extends ApplicationAdapter {
                 return;
             }
             ready = true;
-            logger.info("xLua libFDX sample initialized"
-                    + ", backend=" + System.getProperty("xlua.sample.backend", "default"));
+            logger.info("jLua libFDX sample initialized"
+                    + ", backend=" + System.getProperty("jlua.sample.backend", "default"));
         });
     }
 
@@ -87,7 +87,7 @@ public final class LuaBasicApplication extends ApplicationAdapter {
 
         renderedFrames++;
         if(exitAfterFrames > 0 && renderedFrames >= exitAfterFrames) {
-            logger.info("xLua libFDX sample completed " + renderedFrames + " frames");
+            logger.info("jLua libFDX sample completed " + renderedFrames + " frames");
             application.requestExit();
         }
     }

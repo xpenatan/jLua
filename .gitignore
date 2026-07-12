@@ -12,6 +12,7 @@ gwt-unitCache/
 dist/
 **/webapp/assets
 .gradle/
+.kotlin/
 build/
 
 *.iml

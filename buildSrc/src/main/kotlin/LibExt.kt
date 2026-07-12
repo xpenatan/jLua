@@ -2,8 +2,8 @@ import java.io.File
 import java.util.*
 
 object LibExt {
-    const val groupId = "com.github.xpenatan.xLua"
-    const val libName = "xLua"
+    const val groupId = "com.github.xpenatan.jLua"
+    const val libName = "jLua"
     var isRelease = false
     var libVersion: String = ""
         get() {
@@ -14,6 +14,7 @@ object LibExt {
     const val java17Target = "17"
     const val java25Target = "25"
 
+    const val luaVersion = "5.4.6"
     const val jParserVersion = "-SNAPSHOT"
     const val teaVMVersion = "0.15.0"
     const val libfdxVersion = "-SNAPSHOT"
