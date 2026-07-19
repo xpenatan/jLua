@@ -18,6 +18,8 @@ object LibExt {
     const val jParserVersion = "1.2.3"
     const val teaVMVersion = "0.15.0"
     const val libfdxVersion = "-SNAPSHOT"
+    const val gdxVersion = "1.14.2"
+    const val gdxTeaVMVersion = "1.6.0"
 }
 
 private fun getVersion(): String {

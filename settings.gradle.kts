@@ -1,4 +1,6 @@
 pluginManagement {
+    val gdxTeaVMPluginVersion = "1.6.0"
+
     repositories {
         google()
         mavenCentral()
@@ -12,6 +14,7 @@ pluginManagement {
         }
     }
     plugins {
+        id("com.github.xpenatan.gdx-teavm") version gdxTeaVMPluginVersion
         id("io.github.libfdx") version "-SNAPSHOT"
     }
 }
@@ -35,11 +38,19 @@ include(":lua:android:jni")
 include(":extensions:lua-ext")
 
 // Samples
-include(":samples:basic:core")
-include(":samples:basic:platforms:desktop-jni")
-include(":samples:basic:platforms:desktop-ffm")
-include(":samples:basic:platforms:desktop-c")
-include(":samples:basic:platforms:web")
+include(":samples:basic:shared")
+include(":samples:basic:fdx:core")
+include(":samples:basic:fdx:platforms:desktop-jni")
+include(":samples:basic:fdx:platforms:desktop-ffm")
+include(":samples:basic:fdx:platforms:desktop-c")
+include(":samples:basic:fdx:platforms:web")
+include(":samples:basic:fdx:platforms:android")
+include(":samples:basic:gdx:gl:core")
+include(":samples:basic:gdx:gl:platforms:desktop-jni")
+include(":samples:basic:gdx:gl:platforms:desktop-ffm")
+include(":samples:basic:gdx:gl:platforms:desktop-c")
+include(":samples:basic:gdx:gl:platforms:web")
+include(":samples:basic:gdx:gl:platforms:android")
 
 // #### Use include build to use other project source directly. Just update the source path ####
 

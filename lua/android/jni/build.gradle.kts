@@ -35,6 +35,10 @@ dependencies {
     api("com.github.xpenatan.jParser:runtime-android:${LibExt.jParserVersion}")
 }
 
+tasks.named("preBuild") {
+    dependsOn(":lua:builder:lua_build_project_android")
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {

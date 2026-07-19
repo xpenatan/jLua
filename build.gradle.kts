@@ -32,6 +32,10 @@ allprojects  {
         mavenCentral()
         maven { url = uri("https://central.sonatype.com/repository/maven-snapshots/") }
         maven { url = uri("https://jitpack.io") }
+        maven {
+            url = uri("http://teavm.org/maven/repository/")
+            isAllowInsecureProtocol = true
+        }
     }
 
     configurations.configureEach {
@@ -40,6 +44,9 @@ allprojects  {
         resolutionStrategy.eachDependency {
             if(requested.group == "com.github.xpenatan.jParser") {
                 useVersion(LibExt.jParserVersion)
+            }
+            else if(requested.group == "com.github.xpenatan.gdx-teavm") {
+                useVersion(LibExt.gdxTeaVMVersion)
             }
         }
     }
