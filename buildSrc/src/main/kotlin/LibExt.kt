@@ -15,7 +15,7 @@ object LibExt {
     const val java25Target = "25"
 
     const val luaVersion = "5.4.6"
-    const val jParserVersion = "1.2.3"
+    const val jParserVersion = "-SNAPSHOT"
     const val teaVMVersion = "0.15.0"
     const val libfdxVersion = "-SNAPSHOT"
     const val gdxVersion = "1.14.2"
