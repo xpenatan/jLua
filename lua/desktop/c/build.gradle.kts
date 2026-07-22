@@ -6,7 +6,6 @@ plugins {
 }
 
 val moduleName = "lua-desktop-c"
-group = "${LibExt.groupId}.desktop"
 val libDir = "${projectDir}/../../builder/build/c++/libs"
 val nativeResourceRoot = "external_cpp/jparser/lua/native"
 val gdxTeaVMMarker = resources.text.fromString("ignore-resources=META-INF\n")
@@ -114,16 +113,14 @@ publishing {
         platforms.keys.forEach { platform ->
             create<MavenPublication>("mavenNative_$platform") {
                 artifactId = "${moduleName}_$platform"
-                groupId = LibExt.groupId
-                version = LibExt.libVersion
                 artifact(nativeJars.getValue(platform))
                 pom.withXml {
                     val dependenciesNode = asNode().appendNode("dependencies")
 
                     val luaCDependency = dependenciesNode.appendNode("dependency")
-                    luaCDependency.appendNode("groupId", LibExt.groupId)
+                    luaCDependency.appendNode("groupId", project.group.toString())
                     luaCDependency.appendNode("artifactId", "lua-c")
-                    luaCDependency.appendNode("version", LibExt.libVersion)
+                    luaCDependency.appendNode("version", project.version.toString())
                     luaCDependency.appendNode("scope", "compile")
 
                     val jParserRuntimeDependency = dependenciesNode.appendNode("dependency")

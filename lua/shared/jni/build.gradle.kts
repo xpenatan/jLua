@@ -3,7 +3,6 @@ plugins {
 }
 
 val moduleName = "lua-jni"
-group = "${LibExt.groupId}.shared"
 val luaGenerationTask = ":lua:builder:lua_build_project"
 
 base {
@@ -55,8 +54,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = moduleName
-            groupId = LibExt.groupId
-            version = LibExt.libVersion
             from(components["java"])
         }
     }

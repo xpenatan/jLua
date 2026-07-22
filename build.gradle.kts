@@ -1,7 +1,6 @@
 plugins {
     id("java")
-    id("maven-publish")
-    id("signing")
+    id("com.github.xpenatan.easy-publishing") version "-SNAPSHOT"
     id("io.github.libfdx") apply false
     id("org.jetbrains.kotlin.android") version "2.2.21" apply false
 }
@@ -52,4 +51,38 @@ allprojects  {
     }
 }
 
-apply(plugin = "publish")
+easyPublishing {
+    modules(
+        ":lua:core",
+        ":lua:shared:jni",
+        ":lua:shared:c",
+        ":lua:desktop:jni",
+        ":lua:desktop:ffm",
+        ":lua:desktop:c",
+        ":lua:web:wasm",
+        ":lua:android:jni",
+        ":extensions:lua-ext"
+    )
+
+    groupId.set(LibExt.groupId)
+    releaseVersion.set(providers.gradleProperty("version"))
+    snapshotVersion.set("-SNAPSHOT")
+
+    snapshotRepositoryUrl.set("https://central.sonatype.com/repository/maven-snapshots/")
+    releaseRepositoryUrl.set("https://central.sonatype.com")
+    username.set(providers.environmentVariable("CENTRAL_PORTAL_USERNAME"))
+    password.set(providers.environmentVariable("CENTRAL_PORTAL_PASSWORD"))
+    signingKey.set(providers.environmentVariable("SIGNING_KEY"))
+    signingPassword.set(providers.environmentVariable("SIGNING_PASSWORD"))
+
+    pomName.set(LibExt.libName)
+    pomDescription.set("Lua Java Bindings")
+    projectUrl.set("https://github.com/xpenatan/jLua")
+
+    developerId.set("Xpe")
+    developerName.set("Natan")
+
+    scmUrl.set("https://github.com/xpenatan/jLua")
+    scmConnection.set("scm:git:https://github.com/xpenatan/jLua.git")
+    scmDeveloperConnection.set("scm:git:ssh://git@github.com/xpenatan/jLua.git")
+}

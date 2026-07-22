@@ -3,7 +3,6 @@ plugins {
 }
 
 val moduleName = "lua-android"
-group = "${LibExt.groupId}.android"
 
 android {
     namespace = "lua"
@@ -43,8 +42,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = moduleName
-            groupId = LibExt.groupId
-            version = LibExt.libVersion
             afterEvaluate {
                 from(components["release"])
             }
