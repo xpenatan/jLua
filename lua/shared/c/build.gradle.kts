@@ -15,7 +15,6 @@ dependencies {
     api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
     api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
     api("com.github.xpenatan.jParser:loader-c:${LibExt.jParserVersion}")
-    api("org.teavm:teavm-core:${LibExt.teaVMVersion}")
 }
 
 sourceSets {
