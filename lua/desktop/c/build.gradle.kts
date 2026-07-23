@@ -47,6 +47,13 @@ val platforms = mapOf(
     ),
 )
 
+val jParserDesktopCRuntimes = mapOf(
+    "windows_x64" to libs.jParserRuntimeDesktopCWindowsX64,
+    "linux_x64" to libs.jParserRuntimeDesktopCLinuxX64,
+    "mac_x64" to libs.jParserRuntimeDesktopCMacX64,
+    "mac_arm64" to libs.jParserRuntimeDesktopCMacArm64,
+)
+
 fun currentDesktopPlatform(): String {
     val os = System.getProperty("os.name").lowercase(Locale.ROOT)
     val arch = System.getProperty("os.arch").lowercase(Locale.ROOT)
@@ -123,10 +130,11 @@ publishing {
                     luaCDependency.appendNode("version", project.version.toString())
                     luaCDependency.appendNode("scope", "compile")
 
+                    val jParserRuntime = jParserDesktopCRuntimes.getValue(platform).get()
                     val jParserRuntimeDependency = dependenciesNode.appendNode("dependency")
-                    jParserRuntimeDependency.appendNode("groupId", "com.github.xpenatan.jParser")
-                    jParserRuntimeDependency.appendNode("artifactId", "runtime-desktop-c_$platform")
-                    jParserRuntimeDependency.appendNode("version", LibExt.jParserVersion)
+                    jParserRuntimeDependency.appendNode("groupId", jParserRuntime.module.group)
+                    jParserRuntimeDependency.appendNode("artifactId", jParserRuntime.module.name)
+                    jParserRuntimeDependency.appendNode("version", jParserRuntime.versionConstraint.requiredVersion)
                     jParserRuntimeDependency.appendNode("scope", "compile")
                 }
             }

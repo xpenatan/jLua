@@ -6,20 +6,12 @@ val mainClassName = "Build"
 
 dependencies {
     implementation(project(":lua:base"))
-    implementation("com.github.xpenatan.jParser:gen-core:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-build:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-build-tool:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-c:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-ffm:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-web:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-jni:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:gen-idl:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:runtime-core:${LibExt.jParserVersion}")
+    implementation(libs.bundles.jParserBuilder)
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 tasks.register<JavaExec>("lua_build_project") {

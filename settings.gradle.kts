@@ -1,6 +1,4 @@
 pluginManagement {
-    val gdxTeaVMPluginVersion = "1.6.0"
-
     repositories {
         google()
         mavenCentral()
@@ -12,10 +10,6 @@ pluginManagement {
             url = uri("http://teavm.org/maven/repository/")
             isAllowInsecureProtocol = true
         }
-    }
-    plugins {
-        id("com.github.xpenatan.gdx-teavm") version gdxTeaVMPluginVersion
-        id("io.github.libfdx") version "-SNAPSHOT"
     }
 }
 

@@ -13,14 +13,14 @@ val luaRuntimeClasspath by configurations.creating {
 
 dependencies {
     implementation(project(":samples:basic:gdx:gl:core"))
-    implementation("com.badlogicgames.gdx:gdx-backend-lwjgl3:${LibExt.gdxVersion}")
-    implementation("com.badlogicgames.gdx:gdx-platform:${LibExt.gdxVersion}:natives-desktop")
+    implementation(libs.gdxBackendLwjgl3)
+    implementation(variantOf(libs.gdxPlatform) { classifier("natives-desktop") })
     luaRuntimeClasspath(project(luaRuntimeProject))
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java8Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java8Target)
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 val sampleMainClass = "lua.sample.gdx.gl.desktop.LuaGdxDesktopLauncher"
@@ -39,7 +39,7 @@ tasks.register<JavaExec>("lua_gdx_desktop_ffm_run") {
     mainClass.set(sampleMainClass)
     classpath = luaRuntimeClasspath + sourceSets["main"].runtimeClasspath
     javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(LibExt.java25Target.toInt()))
+        languageVersion.set(JavaLanguageVersion.of(25))
     })
     systemProperty("jlua.sample.backend", "libGDX OpenGL FFM")
     forwardSampleProperty("jlua.sample.exitAfterFrames")

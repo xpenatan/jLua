@@ -1,18 +1,18 @@
 plugins {
     id("java")
-    id("io.github.libfdx")
+    alias(libs.plugins.libfdx)
 }
 
 dependencies {
     implementation(project(":samples:basic:fdx:core"))
     implementation(project(":lua:web:wasm"))
-    implementation("io.github.libfdx:backend_web:${LibExt.libfdxVersion}")
-    implementation("io.github.libfdx:gl_web:${LibExt.libfdxVersion}")
+    implementation(libs.libfdxBackendWeb)
+    implementation(libs.libfdxGlWeb)
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 libfdx {

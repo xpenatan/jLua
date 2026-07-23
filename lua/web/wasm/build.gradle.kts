@@ -22,13 +22,13 @@ tasks.jar {
 }
 
 dependencies {
-    api("com.github.xpenatan.jParser:runtime-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:runtime-web:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:runtime-web_wasm:${LibExt.jParserVersion}")
-    compileOnlyApi("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:loader-web:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
-    implementation("com.github.xpenatan.jParser:api-web:${LibExt.jParserVersion}")
+    api(libs.jParserRuntimeCore)
+    api(libs.jParserRuntimeWeb)
+    api(libs.jParserRuntimeWebWasm)
+    compileOnlyApi(libs.jParserLoaderCore)
+    api(libs.jParserLoaderWeb)
+    implementation(libs.jParserApiCore)
+    implementation(libs.jParserApiWeb)
 }
 
 tasks.named("compileJava") {
@@ -56,8 +56,8 @@ tasks.named("clean") {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java17Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java17Target)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 java {

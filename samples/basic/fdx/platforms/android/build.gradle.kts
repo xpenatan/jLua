@@ -2,7 +2,7 @@ import java.io.File
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.androidApplication)
 }
 
 group = "lua.sample.fdx.android"
@@ -27,17 +27,17 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-        targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
         isCoreLibraryDesugaringEnabled = true
     }
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    coreLibraryDesugaring(libs.desugarJdkLibs)
     implementation(project(":samples:basic:fdx:core"))
     implementation(project(":lua:android:jni"))
-    implementation("io.github.libfdx:backend_android:${LibExt.libfdxVersion}")
+    implementation(libs.libfdxBackendAndroid)
 }
 
 tasks.named("preBuild") {

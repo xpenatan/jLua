@@ -2,7 +2,7 @@ import java.io.File
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.androidApplication)
 }
 
 group = "lua.sample.gdx.gl.android"
@@ -47,12 +47,12 @@ val stageGdxJniLibs by tasks.registering(Copy::class) {
 dependencies {
     implementation(project(":samples:basic:gdx:gl:core"))
     implementation(project(":lua:android:jni"))
-    implementation("com.badlogicgames.gdx:gdx-backend-android:${LibExt.gdxVersion}")
+    implementation(libs.gdxBackendAndroid)
 
     gdxNativeClassifiers.forEach { (abi, classifier) ->
         add(
             gdxNativeConfigurations.getValue(abi).name,
-            "com.badlogicgames.gdx:gdx-platform:${LibExt.gdxVersion}:$classifier"
+            variantOf(libs.gdxPlatform) { classifier(classifier) }
         )
     }
 }
@@ -83,8 +83,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(LibExt.java8Target)
-        targetCompatibility = JavaVersion.toVersion(LibExt.java8Target)
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

@@ -11,10 +11,7 @@ base {
 
 dependencies {
     api(project(":lua:core"))
-    api("com.github.xpenatan.jParser:runtime-c:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:loader-c:${LibExt.jParserVersion}")
+    api(libs.bundles.jParserSharedC)
 }
 
 sourceSets {
@@ -48,8 +45,8 @@ tasks.named("clean") {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java17Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java17Target)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
     withJavadocJar()
     withSourcesJar()
 }

@@ -9,11 +9,12 @@ plugins {
 
 val luaSourceRoot = layout.buildDirectory.dir("lua-source")
 val luaArchiveFile = layout.buildDirectory.file("tmp/lua-source.zip")
+val luaVersion = libs.versions.lua.get()
 
 tasks.register("lua_download_source") {
     group = "lua"
-    description = "Downloads Lua ${LibExt.luaVersion} source into the build directory."
-    inputs.property("luaVersion", LibExt.luaVersion)
+    description = "Downloads Lua $luaVersion source into the build directory."
+    inputs.property("luaVersion", luaVersion)
     outputs.dir(luaSourceRoot)
     onlyIf {
         !luaSourceRoot.get().file("lapi.c").asFile.isFile
@@ -22,7 +23,7 @@ tasks.register("lua_download_source") {
     doLast {
         val sourceRoot = luaSourceRoot.get().asFile
         val archiveFile = luaArchiveFile.get().asFile
-        val url = "https://github.com/lua/lua/archive/refs/tags/v${LibExt.luaVersion}.zip"
+        val url = "https://github.com/lua/lua/archive/refs/tags/v$luaVersion.zip"
         println("URL: $url")
         delete(sourceRoot)
         archiveFile.parentFile.mkdirs()

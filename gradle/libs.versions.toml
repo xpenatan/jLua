@@ -1,0 +1,124 @@
+[versions]
+jLuaRelease = "5.4.6.0"
+jLuaSnapshot = "-SNAPSHOT"
+lua = "5.4.6"
+jParser = "1.2.5"
+libfdx = "-SNAPSHOT"
+gdx = "1.14.2"
+gdxTeaVM = "1.6.0"
+easyPublishing = "0.1.0"
+androidGradlePlugin = "9.1.1"
+desugarJdkLibs = "2.0.3"
+
+[libraries]
+jParserApiCore = { module = "com.github.xpenatan.jParser:api-core", version.ref = "jParser" }
+jParserApiWeb = { module = "com.github.xpenatan.jParser:api-web", version.ref = "jParser" }
+jParserGenBuild = { module = "com.github.xpenatan.jParser:gen-build", version.ref = "jParser" }
+jParserGenBuildTool = { module = "com.github.xpenatan.jParser:gen-build-tool", version.ref = "jParser" }
+jParserGenC = { module = "com.github.xpenatan.jParser:gen-c", version.ref = "jParser" }
+jParserGenCore = { module = "com.github.xpenatan.jParser:gen-core", version.ref = "jParser" }
+jParserGenFfm = { module = "com.github.xpenatan.jParser:gen-ffm", version.ref = "jParser" }
+jParserGenIdl = { module = "com.github.xpenatan.jParser:gen-idl", version.ref = "jParser" }
+jParserGenJni = { module = "com.github.xpenatan.jParser:gen-jni", version.ref = "jParser" }
+jParserGenWeb = { module = "com.github.xpenatan.jParser:gen-web", version.ref = "jParser" }
+jParserLoaderC = { module = "com.github.xpenatan.jParser:loader-c", version.ref = "jParser" }
+jParserLoaderCore = { module = "com.github.xpenatan.jParser:loader-core", version.ref = "jParser" }
+jParserLoaderWeb = { module = "com.github.xpenatan.jParser:loader-web", version.ref = "jParser" }
+jParserRuntimeAndroid = { module = "com.github.xpenatan.jParser:runtime-android", version.ref = "jParser" }
+jParserRuntimeBase = { module = "com.github.xpenatan.jParser:runtime-base", version.ref = "jParser" }
+jParserRuntimeC = { module = "com.github.xpenatan.jParser:runtime-c", version.ref = "jParser" }
+jParserRuntimeCore = { module = "com.github.xpenatan.jParser:runtime-core", version.ref = "jParser" }
+jParserRuntimeDesktopCWindowsX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-c_windows_x64", version.ref = "jParser" }
+jParserRuntimeDesktopCLinuxX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-c_linux_x64", version.ref = "jParser" }
+jParserRuntimeDesktopCMacX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-c_mac_x64", version.ref = "jParser" }
+jParserRuntimeDesktopCMacArm64 = { module = "com.github.xpenatan.jParser:runtime-desktop-c_mac_arm64", version.ref = "jParser" }
+jParserRuntimeDesktopFfm = { module = "com.github.xpenatan.jParser:runtime-desktop-ffm", version.ref = "jParser" }
+jParserRuntimeDesktopFfmWindowsX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-ffm_windows_x64", version.ref = "jParser" }
+jParserRuntimeDesktopFfmLinuxX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-ffm_linux_x64", version.ref = "jParser" }
+jParserRuntimeDesktopFfmMacX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-ffm_mac_x64", version.ref = "jParser" }
+jParserRuntimeDesktopFfmMacArm64 = { module = "com.github.xpenatan.jParser:runtime-desktop-ffm_mac_arm64", version.ref = "jParser" }
+jParserRuntimeDesktopJniWindowsX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-jni_windows_x64", version.ref = "jParser" }
+jParserRuntimeDesktopJniLinuxX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-jni_linux_x64", version.ref = "jParser" }
+jParserRuntimeDesktopJniMacX64 = { module = "com.github.xpenatan.jParser:runtime-desktop-jni_mac_x64", version.ref = "jParser" }
+jParserRuntimeDesktopJniMacArm64 = { module = "com.github.xpenatan.jParser:runtime-desktop-jni_mac_arm64", version.ref = "jParser" }
+jParserRuntimeJni = { module = "com.github.xpenatan.jParser:runtime-jni", version.ref = "jParser" }
+jParserRuntimeWeb = { module = "com.github.xpenatan.jParser:runtime-web", version.ref = "jParser" }
+jParserRuntimeWebWasm = { module = "com.github.xpenatan.jParser:runtime-web_wasm", version.ref = "jParser" }
+
+libfdxApplication = { module = "io.github.libfdx:application", version.ref = "libfdx" }
+libfdxBackendAndroid = { module = "io.github.libfdx:backend_android", version.ref = "libfdx" }
+libfdxBackendDesktop = { module = "io.github.libfdx:backend_desktop", version.ref = "libfdx" }
+libfdxBackendDesktopC = { module = "io.github.libfdx:backend_desktop_c", version.ref = "libfdx" }
+libfdxBackendWeb = { module = "io.github.libfdx:backend_web", version.ref = "libfdx" }
+libfdxDisplay = { module = "io.github.libfdx:display", version.ref = "libfdx" }
+libfdxGlDesktop = { module = "io.github.libfdx:gl_desktop", version.ref = "libfdx" }
+libfdxGlDesktopC = { module = "io.github.libfdx:gl_desktop_c", version.ref = "libfdx" }
+libfdxGlWeb = { module = "io.github.libfdx:gl_web", version.ref = "libfdx" }
+libfdxGraphics = { module = "io.github.libfdx:graphics", version.ref = "libfdx" }
+
+gdxBackendAndroid = { module = "com.badlogicgames.gdx:gdx-backend-android", version.ref = "gdx" }
+gdxBackendLwjgl3 = { module = "com.badlogicgames.gdx:gdx-backend-lwjgl3", version.ref = "gdx" }
+gdxCore = { module = "com.badlogicgames.gdx:gdx", version.ref = "gdx" }
+gdxPlatform = { module = "com.badlogicgames.gdx:gdx-platform", version.ref = "gdx" }
+
+desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
+
+[bundles]
+jParserBuilder = [
+    "jParserGenCore",
+    "jParserGenBuild",
+    "jParserGenBuildTool",
+    "jParserGenC",
+    "jParserGenFfm",
+    "jParserGenWeb",
+    "jParserGenJni",
+    "jParserGenIdl",
+    "jParserRuntimeCore",
+]
+jParserBase = [
+    "jParserLoaderCore",
+    "jParserApiCore",
+    "jParserRuntimeBase",
+    "jParserRuntimeCore",
+]
+jParserCore = [
+    "jParserLoaderCore",
+    "jParserApiCore",
+    "jParserRuntimeCore",
+]
+jParserSharedJni = [
+    "jParserLoaderCore",
+    "jParserApiCore",
+    "jParserRuntimeJni",
+]
+jParserSharedC = [
+    "jParserRuntimeC",
+    "jParserApiCore",
+    "jParserLoaderCore",
+    "jParserLoaderC",
+]
+jParserAndroid = [
+    "jParserApiCore",
+    "jParserLoaderCore",
+    "jParserRuntimeJni",
+    "jParserRuntimeAndroid",
+]
+jParserDesktopJniNatives = [
+    "jParserRuntimeDesktopJniWindowsX64",
+    "jParserRuntimeDesktopJniLinuxX64",
+    "jParserRuntimeDesktopJniMacX64",
+    "jParserRuntimeDesktopJniMacArm64",
+]
+jParserDesktopFfmNatives = [
+    "jParserRuntimeDesktopFfmWindowsX64",
+    "jParserRuntimeDesktopFfmLinuxX64",
+    "jParserRuntimeDesktopFfmMacX64",
+    "jParserRuntimeDesktopFfmMacArm64",
+]
+
+[plugins]
+easyPublishing = { id = "com.github.xpenatan.easy-publishing", version.ref = "easyPublishing" }
+libfdx = { id = "io.github.libfdx", version.ref = "libfdx" }
+gdxTeaVM = { id = "com.github.xpenatan.gdx-teavm", version.ref = "gdxTeaVM" }
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }

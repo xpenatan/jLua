@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
 }
 
 val moduleName = "lua-android"
@@ -18,8 +18,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(LibExt.java8Target)
-        targetCompatibility = JavaVersion.toVersion(LibExt.java8Target)
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     publishing {
         singleVariant("release")
@@ -28,10 +28,7 @@ android {
 
 dependencies {
     api(project(":lua:shared:jni"))
-    api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:runtime-jni:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:runtime-android:${LibExt.jParserVersion}")
+    api(libs.bundles.jParserAndroid)
 }
 
 tasks.named("preBuild") {

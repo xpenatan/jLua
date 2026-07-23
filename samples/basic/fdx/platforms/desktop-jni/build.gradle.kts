@@ -13,14 +13,14 @@ val glRuntimeClasspath by configurations.creating {
 dependencies {
     implementation(project(":samples:basic:fdx:core"))
     implementation(project(":lua:desktop:jni"))
-    implementation("io.github.libfdx:backend_desktop:${LibExt.libfdxVersion}")
-    implementation("io.github.libfdx:display:${LibExt.libfdxVersion}")
-    glRuntimeClasspath("io.github.libfdx:gl_desktop:${LibExt.libfdxVersion}")
+    implementation(libs.libfdxBackendDesktop)
+    implementation(libs.libfdxDisplay)
+    glRuntimeClasspath(libs.libfdxGlDesktop)
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 val sampleMainClass = "lua.sample.fdx.desktop.LuaFdxDesktopLauncher"
@@ -39,7 +39,7 @@ tasks.register<JavaExec>("lua_fdx_desktop_gl_jni_run") {
     mainClass.set(sampleMainClass)
     classpath = sourceSets["main"].runtimeClasspath + glRuntimeClasspath
     javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(LibExt.java25Target.toInt()))
+        languageVersion.set(JavaLanguageVersion.of(25))
     })
     systemProperty("jlua.sample.backend", "libFDX OpenGL JNI")
     forwardSampleProperty("jlua.sample.exitAfterFrames")

@@ -1,10 +1,10 @@
 plugins {
-    id("com.github.xpenatan.gdx-teavm")
+    alias(libs.plugins.gdxTeaVM)
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java17Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java17Target)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {

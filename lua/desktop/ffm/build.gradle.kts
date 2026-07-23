@@ -16,13 +16,10 @@ tasks.jar {
 }
 
 dependencies {
-    api("com.github.xpenatan.jParser:loader-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:api-core:${LibExt.jParserVersion}")
-    api("com.github.xpenatan.jParser:runtime-desktop-ffm:${LibExt.jParserVersion}")
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-ffm_windows_x64:${LibExt.jParserVersion}")
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-ffm_linux_x64:${LibExt.jParserVersion}")
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-ffm_mac_x64:${LibExt.jParserVersion}")
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-ffm_mac_arm64:${LibExt.jParserVersion}")
+    api(libs.jParserLoaderCore)
+    api(libs.jParserApiCore)
+    api(libs.jParserRuntimeDesktopFfm)
+    runtimeOnly(libs.bundles.jParserDesktopFfmNatives)
 }
 
 tasks.named("compileJava") {
@@ -45,8 +42,8 @@ tasks.named("clean") {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 java {

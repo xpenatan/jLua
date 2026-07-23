@@ -4,7 +4,7 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
     id("java")
-    id("io.github.libfdx")
+    alias(libs.plugins.libfdx)
 }
 
 fun currentDesktopPlatformName(): String {
@@ -22,6 +22,12 @@ fun currentDesktopPlatformName(): String {
 }
 
 val currentDesktopPlatform = currentDesktopPlatformName()
+val jParserDesktopCRuntimes = mapOf(
+    "windows_x64" to libs.jParserRuntimeDesktopCWindowsX64,
+    "linux_x64" to libs.jParserRuntimeDesktopCLinuxX64,
+    "mac_x64" to libs.jParserRuntimeDesktopCMacX64,
+    "mac_arm64" to libs.jParserRuntimeDesktopCMacArm64,
+)
 
 dependencies {
     implementation(project(":samples:basic:fdx:core"))
@@ -31,14 +37,14 @@ dependencies {
         "configuration" to "nativeRuntime_$currentDesktopPlatform",
     )))
 
-    implementation("io.github.libfdx:backend_desktop_c:${LibExt.libfdxVersion}")
-    runtimeOnly("io.github.libfdx:gl_desktop_c:${LibExt.libfdxVersion}")
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-c_$currentDesktopPlatform:${LibExt.jParserVersion}")
+    implementation(libs.libfdxBackendDesktopC)
+    runtimeOnly(libs.libfdxGlDesktopC)
+    runtimeOnly(jParserDesktopCRuntimes.getValue(currentDesktopPlatform))
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java25Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java25Target)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 libfdx {

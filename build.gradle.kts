@@ -1,23 +1,9 @@
 plugins {
     id("java")
-    id("com.github.xpenatan.easy-publishing") version "-SNAPSHOT"
-    id("io.github.libfdx") apply false
-    id("org.jetbrains.kotlin.android") version "2.2.21" apply false
+    alias(libs.plugins.easyPublishing)
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-
-    val kotlinVersion = "2.2.21"
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.12.3")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-    }
-}
+val jLuaGroup = "com.github.xpenatan.jLua"
 
 allprojects  {
 
@@ -40,14 +26,6 @@ allprojects  {
     configurations.configureEach {
         // Check for updates every sync
         resolutionStrategy.cacheChangingModulesFor(0, "seconds")
-        resolutionStrategy.eachDependency {
-            if(requested.group == "com.github.xpenatan.jParser") {
-                useVersion(LibExt.jParserVersion)
-            }
-            else if(requested.group == "com.github.xpenatan.gdx-teavm") {
-                useVersion(LibExt.gdxTeaVMVersion)
-            }
-        }
     }
 }
 
@@ -64,9 +42,9 @@ easyPublishing {
         ":extensions:lua-ext"
     )
 
-    groupId.set(LibExt.groupId)
-    releaseVersion.set(providers.gradleProperty("version"))
-    snapshotVersion.set("-SNAPSHOT")
+    groupId.set(jLuaGroup)
+    releaseVersion.set(libs.versions.jLuaRelease)
+    snapshotVersion.set(libs.versions.jLuaSnapshot)
 
     snapshotRepositoryUrl.set("https://central.sonatype.com/repository/maven-snapshots/")
     releaseRepositoryUrl.set("https://central.sonatype.com")
@@ -75,7 +53,7 @@ easyPublishing {
     signingKey.set(providers.environmentVariable("SIGNING_KEY"))
     signingPassword.set(providers.environmentVariable("SIGNING_PASSWORD"))
 
-    pomName.set(LibExt.libName)
+    pomName.set("jLua")
     pomDescription.set("Lua Java Bindings")
     projectUrl.set("https://github.com/xpenatan/jLua")
 

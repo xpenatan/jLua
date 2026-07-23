@@ -2,7 +2,7 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.teavm.gradle.api.OptimizationLevel
 
 plugins {
-    id("com.github.xpenatan.gdx-teavm")
+    alias(libs.plugins.gdxTeaVM)
 }
 
 fun currentDesktopPlatformName(): String {
@@ -20,21 +20,27 @@ fun currentDesktopPlatformName(): String {
 }
 
 val currentDesktopPlatform = currentDesktopPlatformName()
+val jParserDesktopCRuntimes = mapOf(
+    "windows_x64" to libs.jParserRuntimeDesktopCWindowsX64,
+    "linux_x64" to libs.jParserRuntimeDesktopCLinuxX64,
+    "mac_x64" to libs.jParserRuntimeDesktopCMacX64,
+    "mac_arm64" to libs.jParserRuntimeDesktopCMacArm64,
+)
 
 dependencies {
-    implementation("com.badlogicgames.gdx:gdx:${LibExt.gdxVersion}")
+    implementation(libs.gdxCore)
     implementation(project(":samples:basic:gdx:gl:core"))
     implementation(project(":lua:shared:c"))
     runtimeOnly(project(mapOf(
         "path" to ":lua:desktop:c",
         "configuration" to "nativeRuntime_$currentDesktopPlatform",
     )))
-    runtimeOnly("com.github.xpenatan.jParser:runtime-desktop-c_$currentDesktopPlatform:${LibExt.jParserVersion}")
+    runtimeOnly(jParserDesktopCRuntimes.getValue(currentDesktopPlatform))
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(LibExt.java17Target)
-    targetCompatibility = JavaVersion.toVersion(LibExt.java17Target)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 gdxTeaVM {
