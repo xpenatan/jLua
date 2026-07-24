@@ -9,7 +9,7 @@ plugins {
 
 val luaSourceRoot = layout.buildDirectory.dir("lua-source")
 val luaArchiveFile = layout.buildDirectory.file("tmp/lua-source.zip")
-val luaVersion = libs.versions.lua.get()
+val luaVersion = libs.versions.luaSource.get()
 
 tasks.register("lua_download_source") {
     group = "lua"

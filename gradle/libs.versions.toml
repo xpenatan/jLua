@@ -1,7 +1,10 @@
 [versions]
+jLuaGroup = "com.github.xpenatan.jLua"
+jLuaName = "jLua"
 jLuaRelease = "5.4.6.0"
 jLuaSnapshot = "-SNAPSHOT"
-lua = "5.4.6"
+luaSource = "5.4.6"
+
 jParser = "1.2.5"
 libfdx = "-SNAPSHOT"
 gdx = "1.14.2"

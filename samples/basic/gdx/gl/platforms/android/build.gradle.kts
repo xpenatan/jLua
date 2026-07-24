@@ -1,6 +1,11 @@
 import java.io.File
 import java.util.Properties
 
+abstract class StageGdxJniLibs : Copy() {
+    @get:OutputDirectory
+    abstract val outputDirectory: DirectoryProperty
+}
+
 plugins {
     alias(libs.plugins.androidApplication)
 }
@@ -19,9 +24,8 @@ val gdxNativeConfigurations = gdxNativeClassifiers.keys.associateWith { abi ->
         isCanBeResolved = true
     }
 }
-val stagedGdxJniLibsDir = layout.buildDirectory.dir("generated/gdxJniLibs")
-
-val stageGdxJniLibs by tasks.registering(Copy::class) {
+val stageGdxJniLibs = tasks.register<StageGdxJniLibs>("stageGdxJniLibs") {
+    outputDirectory.convention(layout.buildDirectory.dir("generated/gdxJniLibs"))
     gdxNativeConfigurations.forEach { (abi, configuration) ->
         from(configuration.incoming.artifactView { }.files.elements.map { files ->
             files.map { zipTree(it.asFile) }
@@ -30,13 +34,13 @@ val stageGdxJniLibs by tasks.registering(Copy::class) {
             into(abi)
         }
     }
-    into(stagedGdxJniLibsDir)
+    into(outputDirectory)
     doFirst {
-        delete(stagedGdxJniLibsDir)
+        delete(outputDirectory)
     }
     doLast {
         val missing = gdxNativeClassifiers.keys.filter { abi ->
-            !stagedGdxJniLibsDir.get().file("$abi/libgdx.so").asFile.isFile
+            !outputDirectory.get().file("$abi/libgdx.so").asFile.isFile
         }
         if(missing.isNotEmpty()) {
             throw GradleException("Missing libGDX Android native libraries for ABI(s): ${missing.joinToString()}")
@@ -58,6 +62,7 @@ dependencies {
 }
 
 android {
+    enableKotlin = false
     namespace = "lua.sample.gdx.gl.android"
     compileSdk = 36
 
@@ -67,12 +72,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-    }
-
-    sourceSets {
-        named("main") {
-            jniLibs.srcDirs(stagedGdxJniLibsDir)
-        }
     }
 
     buildTypes {
@@ -88,10 +87,13 @@ android {
     }
 }
 
-tasks.matching { task ->
-    task.name == "mergeDebugJniLibFolders" || task.name == "mergeReleaseJniLibFolders"
-}.configureEach {
-    dependsOn(stageGdxJniLibs)
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        variant.sources.jniLibs?.addGeneratedSourceDirectory(
+            stageGdxJniLibs,
+            StageGdxJniLibs::outputDirectory
+        )
+    }
 }
 
 fun adbExecutable(): String {

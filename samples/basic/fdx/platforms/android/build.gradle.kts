@@ -8,6 +8,7 @@ plugins {
 group = "lua.sample.fdx.android"
 
 android {
+    enableKotlin = false
     namespace = "lua.sample.fdx.android"
     compileSdk = 35
 

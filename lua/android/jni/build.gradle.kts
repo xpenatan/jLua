@@ -5,6 +5,7 @@ plugins {
 val moduleName = "lua-android"
 
 android {
+    enableKotlin = false
     namespace = "lua"
     compileSdk = 35
 

@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.easyPublishing)
 }
 
-val jLuaGroup = "com.github.xpenatan.jLua"
-
 allprojects  {
 
     repositories {
@@ -42,7 +40,7 @@ easyPublishing {
         ":extensions:lua-ext"
     )
 
-    groupId.set(jLuaGroup)
+    groupId.set(libs.versions.jLuaGroup)
     releaseVersion.set(libs.versions.jLuaRelease)
     snapshotVersion.set(libs.versions.jLuaSnapshot)
 
@@ -53,7 +51,7 @@ easyPublishing {
     signingKey.set(providers.environmentVariable("SIGNING_KEY"))
     signingPassword.set(providers.environmentVariable("SIGNING_PASSWORD"))
 
-    pomName.set("jLua")
+    pomName.set(libs.versions.jLuaName)
     pomDescription.set("Lua Java Bindings")
     projectUrl.set("https://github.com/xpenatan/jLua")
 
